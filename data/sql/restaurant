@@ -1,0 +1,20 @@
+DROP TABLE restaurant;
+
+CREATE TABLE restaurant (
+	id int(11) NOT NULL auto_increment,
+	createdate DATETIME  NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	name varchar(100) NOT NULL,
+	userid varchar(100) NOT NULL,
+	password varchar(100) NOT NULL,
+	email varchar(100) NOT NULL,
+	phone varchar(100) NOT NULL,
+	level int(1) NOT NULL DEFAULT 0,
+	status enum('Y','N') NOT NULL DEFAULT 'Y',
+	note varchar(500) NOT NULL,
+	tax decimal(5,2) NOT NULL default 9.75,
+	PRIMARY KEY (id)
+)COLLATE='utf8_general_ci' ENGINE=InnoDB AUTO_INCREMENT=10000;
+
+INSERT INTO restaurant (name, userid, password, email, phone, note)
+     VALUES  ('Manpuku', 'manpuku', 'pleasanton', 'manpuku@gmail.com','4087727367',''),
+     		 ('Kaki', 'kaki', 'pleasanton', 'kaki@gmail.com','4087727367','');

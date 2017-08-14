@@ -1,0 +1,91 @@
+<script type="text/javascript">
+
+$(document).ready(function(){
+	$('#cancelbutton').click(function(){
+		parent.history.back();
+		return false;
+	});
+
+	$("#remember").bootstrapSwitch();
+});
+</script>
+
+<?php
+$flashMessage = $this->flashMessenger()->getMessages();
+
+if (count($flashMessage)) :
+    ?>
+<div class="row">
+	<ul>
+        <?php
+    foreach ($flashMessage as $msg) :
+        foreach ($msg as $type => $message) :
+            ?>
+            <li><span class="<?php echo $type; ?>"><?php echo $message; ?></span></li>
+        <?php endforeach; ?>
+        <?php endforeach; ?>
+        </ul>
+    <?php endif; ?>
+    <?php if(isset($this->messages)) : ?>
+    <ul>
+        <?php foreach ($this->messages as $type => $msg) : ?>
+        <li><span class="<?php echo $type; ?>"><?php echo $msg; ?></span></li>
+        <?php endforeach; ?>
+    </ul>
+</div>
+<?php endif; ?>
+<div class="row">
+	<div class="col-md-8">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">Login</h3>
+			</div>
+			<div class="panel-body">
+			    <?php
+                $form = $this->loginForm;
+                $form->prepare();
+                echo $this->form()->openTag($form);
+                ?>
+                
+                <div class="form-group">
+                <?php echo $this->formRow($form->get('email')); ?>
+                <span class="common-error-msg"><?php echo $this->formElementErrors($form->get('email'));?></span>
+                </div>
+                
+                <div class="form-group">
+                <?php echo $this->formRow($form->get('password')); ?>
+                <span class="common-error-msg"><?php echo $this->formElementErrors($form->get('password'));?></span>
+                </div>
+                
+                <div class="form-group">
+                <?php echo $this->formLabel($form->get('remember')); ?>
+                <br/>
+                <?php echo $this->formInput($form->get('remember')); ?>
+                </div>             
+                
+                <div class="form-group">
+                <?php
+                echo $this->formRow($form->get('loginCsrf'));
+                echo $this->formElement($form->get('submit'));
+                ?>
+                &nbsp;
+                <?php
+                echo $this->formElement($form->get('cancel'));
+                ?>                      
+                </div>
+                
+                <?php
+                echo $this->form()->closeTag($form);
+                ?>
+            </div>
+		</div>
+		<div class="panel-footer">
+		    DEMO
+		    <br/>
+            email : admin@baapchef.com
+            <br/>
+            password : 12345678
+		
+		</div>
+	</div>
+</div>

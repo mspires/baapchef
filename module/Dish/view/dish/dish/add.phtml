@@ -1,0 +1,29 @@
+<?php
+$title = 'Add new dish';
+$this->headTitle($title);
+?>
+
+<style>
+<!--
+form label, form label span {
+ display: block;
+}
+-->
+</style>
+
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<?php
+
+$form->setAttribute('action', $this->url('dish', array('action' => 'add')));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+echo $this->formHidden($form->get('id'));
+echo $this->formHidden($form->get('rid'));
+echo $this->formRow($form->get('name'));
+echo $this->formRow($form->get('price'));
+echo $this->formRow($form->get('note'));
+echo $this->formSubmit($form->get('submit'));
+echo $this->form()->closeTag();
+
+?>

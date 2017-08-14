@@ -1,0 +1,181 @@
+<?php
+$title = 'PinIn';
+$this->headTitle($title);
+?>
+
+<script type="text/javascript">
+<!--
+$(document).ready(function(){
+	$('#users .btn').click(function(){
+
+		$('#users .btn').removeClass('btn-primary');
+		if( $(this).hasClass('btn-default') ) {
+
+			$(this).addClass('btn-primary');
+			$('#user').val($(this).attr('user'));
+		}
+
+		$('#pininbox').show();
+		$('#pin').focus();
+		   
+	});
+
+	$('#pinin').click(function(){
+
+		var user = $('#user').val();
+		var pin = $('#pin').val();
+		if(pin.length == 4)
+		{
+			$.post( "/admin/auth/pinin", { user: user, pin: pin } )
+			
+			     .done(function( data ) {
+			    	    if(data.valid === true )
+					    {	   
+						    location.href = "/admin/home"; 
+						    $('#pininbox').hide();
+					    }
+			    	    else
+			    	    {
+			    	    	alert( data.message );
+				    	}
+			     });
+		}   
+	});
+
+	$("#myModal").on('show.bs.modal', function(event){
+        var button = $(event.relatedTarget);
+        
+        var titleData = button.data('title');
+        $(this).find('.modal-title').text(titleData);
+
+        var contentData = button.data('content');
+        $(this).find('.modal-body').text(contentData);
+    });
+    
+});
+-->
+</script>
+
+<div id="myModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                <h4 class="modal-title">title here</h4>
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="jumbotron">
+    <div style="width: 100%; text-align: center; font-size: 16px">
+    
+        <img src="/img/admin-top.png" width="100%" />
+    
+        <div class="row" style="width: 100%; padding-top: 30px; text-align: right">
+            <div id="users">
+                <?php foreach ($users as $user) : ?>
+                        <a href="javascript:void()" class="btn btn-default" style="min-width: 150px" user="<?php echo $this->escapeHtml($user->email)?>">
+                            <i class="fa fa-user">
+                            <img src="<?php echo $this->escapeHtml($user->image)?>" width=32 />
+                            <br/>
+                            <?php echo $this->escapeHtml($user->name);?>
+                            <br/>
+                            <?php echo $this->escapeHtml($user->role_name);?>
+                            </i>
+                        </a>
+                <?php endforeach; ?>
+            </div>
+            <div id="pininbox" style="display: none; margin-top: 20px">
+                <input type="hidden" id="user"/>
+               <input type="password" id="pin" class="form-control" style="width: 100px; display: inline-block" maxlength=4  placeholder="****"/>
+               <button type="button" class="btn btn-primary" id="pinin">
+                  <span class="glyphicon glyphicon-log-in"></span>&nbsp;&nbsp;Enter
+               </button>
+               <br/>
+               PIN : 1234
+            </div>   
+        </div>
+            
+    </div>
+</div>
+
+<div class="row">
+
+    <div class="col-md-6">
+        <div class="panel panel-default" style="min-height: 300px">
+            <div class="panel-heading">
+                <h3 class="panel-title"><?php echo $this->translate('Event') ?></h3>
+              
+            </div>
+            <div class="panel-body">
+            
+                 <?php foreach ($events as $event) : ?>
+                 <div class="clearfix">
+                    <span class="pull-left" data-toggle="modal" data-target="#myModal" 
+                        data-title="<?php echo $this->escapeHtml($event->subject);?>"
+                        data-content="<?php echo $this->escapeHtml($event->note);?>">
+                        <span class="glyphicon glyphicon-inbox"></span> <?php echo $this->escapeHtml($event->subject);?></span>
+                     <span class="pull-right"><?php echo $this->escapeHtml($event->createdate);?></span>
+                 </div>
+                 <hr/>
+                 <?php endforeach; ?>                
+       
+             </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6">
+        <div class="panel panel-default" style="min-height: 300px">
+            <div class="panel-heading">
+                <h3 class="panel-title"><?php echo $this->translate('Notice') ?></h3>
+               
+            </div>
+            <div class="panel-body">
+
+                 <?php foreach ($alerts as $alert) : ?>
+                 <div class="clearfix">
+                     <span class="pull-left" data-toggle="modal" data-target="#myModal" 
+                        data-title="<?php echo $this->escapeHtml($alert->subject);?>"
+                        data-content="<?php echo $this->escapeHtml($alert->note);?>">
+                        <span class="glyphicon glyphicon-bullhorn"></span> <?php echo $this->escapeHtml($alert->subject);?></span>
+                     <span class="pull-right"><?php echo $this->escapeHtml($alert->createdate);?></span>
+                 </div>
+                 <hr/>
+                 <?php endforeach; ?>  
+                                             
+            </div>
+        </div>
+    </div>
+ </div>
+ 
+ <div class="row">   
+    <div class="col-md-12">
+        <div class="panel panel-default" style="min-height: 300px">
+            <div class="panel-heading">
+                <h3 class="panel-title"><?php echo $this->translate('Message') ?></h3>              
+            </div>
+            <div class="panel-body">
+                  
+                 <?php foreach ($requests as $request) : ?>
+                 <div class="clearfix">
+                     <span class="pull-left" data-toggle="modal" data-target="#myModal" 
+                        data-title="<?php echo $this->escapeHtml($request->subject);?>"
+                        data-content="<?php echo $this->escapeHtml($request->note);?>">
+                        <span class="glyphicon glyphicon-envelope"></span> <?php echo $this->escapeHtml($request->subject);?></span>
+                     <span class="pull-right"><?php echo $this->escapeHtml($request->createdate);?></span>
+                 </div>
+                 <hr/>
+                 <?php endforeach; ?>  
+                                                 
+            </div>
+        </div>
+    </div>
+
+
+</div>

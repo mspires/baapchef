@@ -1,0 +1,32 @@
+<script type="text/javascript">
+
+$(document).ready(function(){
+	$('#cancelbutton').click(function(){
+		parent.history.back();
+		return false;
+	});
+});
+
+
+
+</script>
+
+<div class="row">
+    <div class="col-sm-4">
+         <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title"><?php echo $this->translate('Enter confirmation code from you email') ?></h3>
+            </div>
+            <div class="panel-body">     
+            	<form role="form" method="post" action="/agent/auth/register">
+            		<div class="form-group">
+        				<label for="name">Comfirmation Code:</label>
+        				<input type="text" class="form-control" id="code" name="code" placeholder="Enter confirmation code">
+        			</div>
+        			<button type="submit" class="btn btn-primary">Submit</button>
+        			<button type="button" id="cancelbutton" class="btn btn-default">Cancel</button>
+        		</form>
+    	   </div>
+        </div>
+    </div>
+</div>

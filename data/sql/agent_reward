@@ -1,0 +1,11 @@
+CREATE TABLE agent_reward (
+	id int(11) NOT NULL auto_increment,
+	agentid int(11) NOT NULL,
+	dishid int(11) NOT NULL,
+	amount DECIMAL(4,2) NOT NULL,
+	createdate DATETIME  NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	PRIMARY KEY (id)
+);
+
+INSERT INTO agent_reward (agentid, dishid, amount)
+     VALUES  (1,1,0.10);

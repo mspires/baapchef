@@ -1,0 +1,56 @@
+<?php
+$title = 'Edit Reward';
+$this->headTitle($title);
+?>
+
+<style>
+<!--
+form label, form label span {
+ display: block;
+}
+-->
+</style>
+
+<div class="row">
+<div class="col-sm-4" style="background-color:#6495ED">
+
+<h2><?php echo $this->escapeHtml($title); ?></h2>
+
+<?php
+$form = $this->form;
+$form->setAttribute('action', $this->url(
+    'dish',
+    array(
+        'action' => 'edit',
+        'id'     => $this->id,
+    )
+));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+echo $this->formHidden($form->get('id'));
+?>
+
+
+<div class="form-group">
+<?php echo $this->formRow($form->get('name'));?>
+</div>
+
+<div class="form-group">
+<?php echo $this->formRow($form->get('price'));?>
+</div>
+
+<div class="form-group">
+<?php echo $this->formRow($form->get('note'));?>
+</div>
+
+<div class="form-group">
+<?php echo $this->formSubmit($form->get('submit'));?>
+</div>
+
+<?php 
+echo $this->form()->closeTag();
+?>
+
+</div>
+</div>

@@ -1,0 +1,34 @@
+<?php
+
+$title = 'Memberships';
+$this->headTitle($title);
+?>
+
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+ <p>
+     <a href="<?php echo $this->url('membership', array('action'=>'add'));?>">Add new Membership</a>
+ </p>
+
+ <table class="table">
+ <tr>
+     <th>Restaurant</th>
+     <th>Customer</th>
+     <th>Level</th>
+     <th>Status</th>
+     <th>&nbsp;</th>
+ </tr>
+ <?php foreach ($memberships as $membership) : ?>
+ <tr>
+     <td><?php echo $this->escapeHtml($membership->rid);?></td>
+     <td style="vertical-align: middle;" ><?php echo $this->escapeHtml($membership->cid);?></td>
+     <td style="vertical-align: middle;" ><?php echo $this->escapeHtml($membership->level);?></td>
+     <td style="vertical-align: middle;" ><?php echo $this->escapeHtml($membership->status);?></td>
+     <td style="vertical-align: middle;" >
+         <a href="<?php echo $this->url('membership',
+             array('action'=>'edit', 'id' => $membership->id));?>">Edit</a>
+         <a href="<?php echo $this->url('membership',
+             array('action'=>'delete', 'id' => $membership->id));?>">Delete</a>
+     </td>
+ </tr>
+ <?php endforeach; ?>
+ </table>

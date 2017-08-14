@@ -1,0 +1,54 @@
+
+<div class="row">
+
+    <div class="col-md-3">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><?php echo $this->translate('Account') ?></h3>
+            </div>
+            <div class="panel-body">
+                <ul class="list-group">
+                  <li class="list-group-item"><span class="glyphicon glyphicon-edit"></span>
+                            <a href="<?php echo $this->url('restaurant',
+                                 array('action'=>'edit'));?>"> Edit Profile</a></li>
+                  <li class="list-group-item"><span class="glyphicon glyphicon-lock"></span>
+                            <a href="<?php echo $this->url('restaurantauth',
+                             array('action'=>'changepwd'));?>"> Change password</a></li>
+                </ul>
+
+                <ul class="list-group">
+                  <li class="list-group-item"><span class="glyphicon glyphicon-lock"></span>
+                            <a href="<?php echo $this->url('myprofile',
+                                 array('action'=>'pushnotification'));?>"> Event</a></li>    
+                  <li class="list-group-item"><span class="glyphicon glyphicon-lock"></span>
+                            <a href="<?php echo $this->url('myprofile',
+                                 array('action'=>'pushnotification'));?>"> Notice</a></li>
+                  <li class="list-group-item"><span class="glyphicon glyphicon-bullhorn"></span>
+                            <a href="<?php echo $this->url('myprofile',
+                                 array('action'=>'pushnotification'));?>"> Push Notifications</a></li>
+                  
+                </ul>
+                
+                <ul class="list-group">
+                  <li class="list-group-item"><span class="glyphicon glyphicon-lock"></span>
+                            <a href="<?php echo $this->url('restpayment');?>"> <?php echo $this->translate('Payment') ?></a></li>
+                  <li class="list-group-item"><span class="glyphicon glyphicon-lock"></span>
+                            <a href="<?php echo $this->url('restcredit');?>"> <?php echo $this->translate('Credit Card') ?></a></li>  
+                            
+                </ul>
+                
+             </div>
+        </div>
+    </div>
+    
+        <div class="col-md-9">
+        <div class="panel panel-default" style="min-height: 500px">
+            <div class="panel-heading">
+                <h3 class="panel-title">&nbsp;</h3>
+            </div>
+            <div class="panel-body">
+
+             </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+DROP table orderbox;
+CREATE TABLE orderbox (
+	id int(11) NOT NULL auto_increment,
+	rid int(11) NOT NULL,
+	cid int(11) NOT NULL,
+	ordertype ENUM('inshop', 'takeout', 'delivery'),
+	orderdate DATETIME  NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	scheduledate DATETIME DEFAULT NULL,
+	takeoutdate DATETIME DEFAULT NULL,
+	rstate int(1) DEFAULT 0,
+	cstate int(1) DEFAULT 0,
+	reward int(1) DEFAULT 1,
+	PRIMARY KEY (id)
+);
+
+insert into orderbox (rid, cid,ordertype,scheduledate,takeoutdate) values (2, 1, 'takeout', now(),now());
+insert into orderbox (rid, cid,ordertype,scheduledate,takeoutdate) values (3, 2, 'takeout', now(),now());
+insert into orderbox (rid, cid,ordertype,scheduledate,takeoutdate) values (4, 3, 'takeout', now(),now());
+
+DROP table orderitem;
+CREATE TABLE orderitem (
+     id int(11) NOT NULL auto_increment,
+     orderid int(11) NOT NULL,
+     dishid int(11) NOT NULL,
+     qty int(11) NOT NULL DEFAULT 1,
+     note varchar(100), 
+     createdate DATETIME  NOT NULL DEFAULT CURRENT_TIMESTAMP,
+     state int(1) NOT NULL DEFAULT 0,
+     PRIMARY KEY (id)
+);

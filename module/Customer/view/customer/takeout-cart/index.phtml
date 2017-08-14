@@ -1,0 +1,49 @@
+<?php
+$title = 'Order Box';
+$this->headTitle($title);
+?>
+
+	
+<div class="row">
+
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading clearfix">
+                <h3 class="panel-title pull-left" style="padding-top: 7.5px;"><?php echo $this->translate($title) ?></h3>
+                <div class="btn-group pull-right">
+                    <a class="btn btn-default btn-sm" href="<?php echo $this->url('adminagent', array('action'=>'add'));?>">Add</a>
+                </div>
+            </div>
+            <div class="panel-body">
+            
+
+
+                 <table class="table">
+                 
+                 <thead>
+                 <tr>
+                     <th>Restaurant</th>
+                     <th>Create Date</th>
+                     <th>&nbsp;</th>
+                 </tr>
+                 </thead>
+                 <tbody>
+                 <?php foreach ($carts as $cart) : ?>
+                 <tr>
+                    <td style="width: 200px">
+                        <img src="<?php echo $this->escapeHtml($cart->rimage)?>" />
+                    </td>
+                    <td data-title="Created Date"><?php echo $this->escapeHtml($cart->createdate);?></td>
+                    <td>
+                         <a class="btn btn-default btn-sm" href="<?php echo $this->url('mytakeoutcartitem',
+                             array('action'=>'index', 'id' => $cart->id));?>">View</a>
+                     </td>    
+                 </tr>
+                 <?php endforeach; ?>
+                 </tbody>
+                 </table>
+
+            </div>
+        </div>
+    </div>
+</div>      

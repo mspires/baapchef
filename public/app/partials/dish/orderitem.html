@@ -1,0 +1,33 @@
+<div ng-controller="OrderItemCtrl">
+	<div class="row">
+	
+	    <div class="col-md-4">
+	        <div class="panel panel-default">
+	            <div class="panel-heading">
+	                <h3 class="panel-title" style="padding-top: 7.5px;">Order Items</h3>
+	            </div>
+	            <div class="panel-body">
+	            
+	            	<table class="table">
+		                 <tbody>                 
+			                 <tr ng-repeat="orderitem in orderitems">
+			                     <td>
+			                        <img src="{{orderitem.image}}" style="width: 200px"/>
+			                     </td>
+			                     <td style="vertical-align: middle;" data-title="Name">{{orderitem.name}}</td>
+			                     <td style="vertical-align: middle;" data-title="Quantity">{{orderitem.qty}}</td>
+			                     <td style="vertical-align: middle;" data-title="Note">{{orderitem.note}}</td>
+			                     <td style="vertical-align: middle;">
+			                         <a class="btn btn-default btn-sm" ng-click="makeOrder()">Edit</a>
+			                         <a class="btn btn-default btn-sm" ng-click="makeOrder()">Delete</a>
+			                     </td>
+			                 </tr>
+		                 </tbody>
+	                 </table>
+	
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	
+</div>

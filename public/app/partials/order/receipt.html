@@ -1,0 +1,61 @@
+<div ng-controller="ReceiptCtrl">
+
+	<div class="row">
+	
+	    <div class="col-md-4">
+	        <div class="panel panel-default">
+	        
+	        
+	            <div class="panel-body">
+	                <div style="text-align: center">
+	                    <h3>{{restaurant.name}}</h3>
+	                    
+	                    <div>{{address.address1}}</div>
+	                    <div>{{address.city}} 
+	                        {{address.state}} 
+	                        {{$address.zip}}</div>
+	                    <div>{{restaurant.phone}}</div>  
+	                </div>
+	                
+	                <table  style="margin-top: 20px; width: 100%">
+	                 <tr ng-repeat="orderitem in orderitems">
+	                     <td>
+	                        <img src="{{orderitem.image}}" style="width: 64px" />
+	                     </td>
+	                     <td style="vertical-align: middle;" data-title="Quantity">{{orderitem.qty}}</td>
+	                     <td style="vertical-align: middle;" data-title="Price">$ {{orderitem.price}}</td>
+	                     <td style="vertical-align: middle;" data-title="Note">{{orderitem.note}}</td>
+	                 </tr>
+	                </table>
+	                <hr/>
+	                <table style="width: 100%">
+	                    <tr>
+	                        <td>Sub Total</td>
+	                        <td style="text-align: right">$ {{subtotal}}</td>
+	                    </tr>   
+	                    <tr>
+	                        <td>Tax</td>
+	                        <td style="text-align: right">$ {{subtotal * taxrate}}</td>
+	                    </tr>  
+	                    <tr>
+	                        <td>Total</td>
+	                        <td style="text-align: right">$ {{subtotal * taxrate + subtotal}}</td>
+	                    </tr>                                               
+	                </table>   
+	                
+	                <div  style="margin-top: 20px; text-align: center">
+	                	{{order.orderdate}}
+	                </div>
+	                
+	                <hr/>
+	                
+	                Became a member of manpuku.
+	                It is easy. just use you smart phone and install baapchef.
+	                or ask front desk. 
+	                
+	            </div>
+	        </div>
+	    </div>
+	</div>
+	    
+</div>

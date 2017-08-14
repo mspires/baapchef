@@ -1,0 +1,205 @@
+<?php
+$title = 'Home';
+$this->headTitle($title);
+?>
+
+<script type="text/javascript">
+<!--
+$(document).ready(function(){
+
+	$("#myModal").on('show.bs.modal', function(event){
+        var button = $(event.relatedTarget);
+        
+        var titleData = button.data('title');
+        $(this).find('.modal-title').text(titleData);
+
+        var contentData = button.data('content');
+        $(this).find('.modal-body').text(contentData);
+    });
+	
+});
+-->
+</script>
+
+<div id="myModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header  alert-primary">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                <h4 class="modal-title"></h4>
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="jumbotron">
+    <div style="width: 100%; text-align: center; font-size: 16px">
+    
+        <img src="/img/admin-top.png" width="100%" />
+                
+    </div>
+</div>
+
+<div class="row">
+
+    <div class="col-md-6">
+        <div class="panel panel-default" style="min-height: 300px">
+            <div class="panel-heading clearfix">
+                <h3 class="panel-title pull-left"  style="padding-top: 7.5px;"><?php echo $this->translate('Event') ?></h3>
+                 <div class="pull-right">
+                    <a class="btn btn-default btn-sm" href="<?php echo $this->url('adminevent');?>">Manage Event</a>
+                </div>                  
+            </div>
+            <div class="panel-body">
+            
+                 <?php foreach ($events as $event) : ?>
+                 <div class="clearfix">
+                     <span class="pull-left" data-toggle="modal" data-target="#myModal" 
+                        data-title="<?php echo $this->escapeHtml($event->subject);?>"
+                        data-content="<?php echo $this->escapeHtml($event->note);?>">
+                        <span class="glyphicon glyphicon-inbox"></span> <?php echo $this->escapeHtml($event->subject);?></span>
+                     <span class="pull-right"><?php echo $this->escapeHtml($event->createdate);?></span>
+                 </div>
+                 <hr/>
+                 <?php endforeach; ?>                
+       
+             </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6">
+        <div class="panel panel-default" style="min-height: 300px">
+            <div class="panel-heading clearfix">
+                <h3 class="panel-title pull-left"  style="padding-top: 7.5px;"><?php echo $this->translate('Notice') ?></h3>
+                 <div class="pull-right">
+                    <a class="btn btn-default btn-sm" href="<?php echo $this->url('adminalert');?>">Manage Notice</a>
+                </div>                  
+            </div>
+            <div class="panel-body">
+
+                 <?php foreach ($alerts as $alert) : ?>
+                 <div class="clearfix">
+                     <span class="pull-left" data-toggle="modal" data-target="#myModal" 
+                        data-title="<?php echo $this->escapeHtml($alert->subject);?>"
+                        data-content="<?php echo $this->escapeHtml($alert->note);?>">
+                        <span class="glyphicon glyphicon-bullhorn"></span> <?php echo $this->escapeHtml($alert->subject);?></span>
+                     <span class="pull-right"><?php echo $this->escapeHtml($alert->createdate);?></span>
+                 </div>
+                 <hr/>
+                 <?php endforeach; ?>  
+                                             
+            </div>
+        </div>
+    </div>
+ </div>
+ 
+ <div class="row">   
+    <div class="col-md-12">
+        <div class="panel panel-default" style="min-height: 300px">
+            <div class="panel-heading clearfix">
+                <h3 class="panel-title pull-left"  style="padding-top: 7.5px;"><?php echo $this->translate('Message') ?></h3>
+                 <div class="pull-right">
+                    <a class="btn btn-default btn-sm" href="<?php echo $this->url('adminmessage');?>">Manage Message</a>
+                </div>                  
+            </div>
+            <div class="panel-body">
+                  
+                 <?php foreach ($requests as $request) : ?>
+                 <div class="clearfix">
+                     <span class="pull-left" data-toggle="modal" data-target="#myModal" 
+                        data-title="<?php echo $this->escapeHtml($request->subject);?>"
+                        data-content="<?php echo $this->escapeHtml($request->note);?>">
+                        <span class="glyphicon glyphicon-envelope"></span> <?php echo $this->escapeHtml($request->subject);?></span>
+                     <span class="pull-right"><?php echo $this->escapeHtml($request->createdate);?></span>
+                 </div>
+                 <hr/>
+                 <?php endforeach; ?>  
+                                                 
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<div class="row">
+
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><?php echo $this->translate('Takeout Dishes') ?></h3>
+            </div>
+            <div class="panel-body">
+
+                <p>
+                    <b>Want to takeout dish</b>
+                </p>
+                <p>
+                    Use our App now.  
+                </p>
+                <p>
+                <img src="../img/orderbyphone.png" width="200px" />
+                </p>
+                <p>
+                    <a class="btn btn-default btn-sm" href="<?php echo $this->url('admintakeoutdish');?>">Manage Takeout Dishes</a>
+                </p>                
+             </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><?php echo $this->translate('In restaurant Dishes') ?></h3>
+            </div>
+            <div class="panel-body">
+                <p>
+                    <b>Order your dish yourself.</b>
+                </p>
+                <p>
+                    Don't need to wait waiter 
+                </p>
+                <p>
+                    We can help you make an order with your phone.
+                </p>
+                <p>
+                <img src="../img/waiter.png" width="200px" />
+                </p>
+                <p>
+                    <a class="btn btn-default btn-sm" href="<?php echo $this->url('admindish');?>">Manage Menues</a>
+                </p>
+                
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><?php echo $this->translate('Membership') ?></h3>
+            </div>
+            <div class="panel-body">
+                <p>
+                    <b>Join your favorite restaurant memeber</b>
+                </p>
+                <p>
+                    If you go inside a restaurant that has partnership with us and you are not member of this restaurant yet, 
+                    you can get a notice for joining membership for this restaurant.
+                </p>
+                <p>
+                    and if you agree to join membership, you can get lots of benefit what this restaurant is providing.
+                </p>
+                <p>
+                    <a class="btn btn-default btn-sm" href="<?php echo $this->url('adminrestaurant');?>">View your customers</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+</div>

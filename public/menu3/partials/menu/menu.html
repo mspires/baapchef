@@ -1,0 +1,153 @@
+<div ng-controller="MenuCtrl">
+
+	<div class="row" ng-hide="showCustomer()">
+	    <div class="col-md-12">
+	    
+			<div class="panel panel-default">
+			    <div class="panel-heading clearfix">
+			        <h3 class="panel-title pull-left">Customer</h3>
+			        <div class="btn-group pull-right">
+			        	<span class="glyphicon glyphicon-th" ng-click="customerBoxflag = true"></span>
+			        </div>				        
+			    </div>
+			    <div class="panel-body">
+			   
+					        <span class="btn btn-default" 
+					        		style="margin-left: 2px; margin-bottom: 2px; width: 160px" 
+					        		ng-repeat="customer in customers">
+					            <img src="{{customer.image}}" style="width:64px" />
+					            <br/>
+					            {{customer.name}}
+					            <br/>
+					        </span>
+				</div>
+	    	</div>
+	    </div>
+	</div>
+	
+	<div class="row" ng-hide="showGroup()">
+	    <div class="col-md-12">
+	    
+			<div class="panel panel-default">
+			    <div class="panel-heading clearfix">
+			        <h3 class="panel-title pull-left">Dish Groups</h3>
+			        <div class="btn-group pull-right">
+			        	<span class="glyphicon glyphicon-th" ng-click="groupBoxflag = true"></span>
+			        </div>	
+			    </div>
+			    <div class="panel-body">
+			   
+					        <span class="btn btn-default" 
+					        		style="margin-left: 2px; margin-bottom: 2px; width: 156px" 
+					        		ng-repeat="dishgroup in dishgroups" 
+					        		ng-click="groupBoxflag = true; filters.groupid = dishgroup.id;" >
+					            &nbsp;
+					            <br/>
+					            {{dishgroup.name}}
+					            <br/>
+					            &nbsp;
+					        </span>
+				</div>
+	    	</div>
+	    </div>
+	    <div class="col-md-3">
+	    </div>
+	</div>
+ 	
+	<div class="row">
+	    <div class="col-md-12">
+	        <div class="panel panel-success">
+	            <div class="panel-heading clearfix">
+	                <h3 class="panel-title pull-left" style="padding-top: 7.5px;">
+	                    <span class="glyphicon glyphicon-th" ng-click="groupBoxflag = false"></span>&nbsp;Menu
+	                </h3>
+	                <div class="btn-group pull-right">
+	                    <a class="btn btn-default btn-sm" href="#order">Order List</a>
+	                    <a class="btn btn-default btn-sm" href="#monitor">Monitor</a>
+	                    <a class="btn btn-default btn-sm" href="#pinout">Exit</a>
+	                </div>
+	            </div>
+	        </div>
+	    </div>                   
+	</div>
+	
+	    	
+	<div class="row">
+	    <div class="col-md-9">
+	    
+	        <div class="panel panel-primary">
+	            <div class="panel-heading clearfix">
+	                <h3 class="panel-title" style="padding-top: 7.5px;">Dishes</h3>
+	            </div>
+	            <div class="panel-body">
+	            	    
+				       	 	<span class="btn btn-default" 
+				       	 			style="margin-left: 2px; margin-bottom: 2px;width:200px"
+				       	 			ng-click="selectdish(dish.id)" 
+				       	 			ng-repeat="dish in dishes | filter: filters">
+				       	 			
+				                 <span style="width:170px; height: 90px">
+				                    <img src="{{dish.imagepath}}" style="width:100%; height:100%" />
+				                 </span>
+				                 <br/>
+				                 <span class="name" style="width:170px; word-wrap: break-word;">{{dish.name}}</span>
+				                 <br/>
+				                 <span class="price">{{dish.price | currency:"$" }}</span>
+				                 
+				        	</span>
+				    	    	
+				</div>
+	    	</div>
+	    </div>
+	    
+		<div class="col-md-3">
+		
+			<div class="panel panel-default">
+			    <div class="panel-heading clearfix">
+			        <h3 class="panel-title pull-left" style="padding-top: 7.5px;">Orders</h3>
+			    </div>
+			    <div class="panel-body">
+			    
+			        <div id="orderbox">
+				       	 	<div class="btn btn-default clearfix" 
+				       	 			style="margin-bottom: 2px;width: 100%"
+				       	 			ng-repeat="selectdish in selectdishes">
+				       	 		 <span class="pull-left">
+				       	 		 <span class="glyphicon glyphicon-remove" ng-click="deletedish(selectdish.id)"></span>&nbsp;&nbsp;
+				                 <span>{{selectdish.name}}</span>
+				                 </span>
+				                 <span class="pull-right">{{selectdish.price | currency:"$"}}</span>
+				                 
+				        	</div>			        
+			        </div>
+			        <hr/>
+			        <div class="clearfix"><span class="pull-left">SUB TOTAL</span><span class="pull-right" id="subtotal">{{subtotal | currency:"$"}}</span></div>
+			        <div class="clearfix"><span class="pull-left">TAX</span><span class="pull-right" id="tax">{{tax | currency:"$"}}</span></div>
+			        <div class="clearfix"><span class="pull-left">TOTAL</span><span class="pull-right" id="total">{{total | currency:"$"}}</span></div>
+			        
+			         <a class="btn btn-success"
+			         		style="margin-top: 10px; width: 100%" 
+			         		href="#">
+			                &nbsp;
+			                <br/>
+			                Order NOW.
+			                <br/>
+			                &nbsp;
+			         </a>
+			         <a class="btn btn-success" 
+			         		style="margin-top: 10px; width: 100%" 
+			         		href="#customer">
+			                &nbsp;
+			                <br/>
+			                Customer.
+			                <br/>
+			                &nbsp;
+			         </a>
+			    </div>
+			</div>		
+		
+		</div>
+	</div>
+
+</div>
+      

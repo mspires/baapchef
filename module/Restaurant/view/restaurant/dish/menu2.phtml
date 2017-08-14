@@ -1,0 +1,374 @@
+<?php
+
+$title = 'Dishes';
+$this->headTitle($title);
+?>
+
+<script type="text/javascript">
+<!--
+
+var total = 0.00;
+var tax = 0.00;
+var subtotal = 0.00;
+var totalprice = 0;
+var taxrate = 0.0875;
+
+var orderItems = new Array();
+
+$(document).ready(function(){
+
+	$('.dishgroup').click(function(){
+
+		var groupid = $(this).attr('groupid');
+		
+		$('.dishgroup').removeClass('btn-primary');
+		if( $(this).hasClass('btn-default') ) {
+
+			$(this).addClass('btn-primary');
+		}
+		
+        $.ajax({
+            url: '/restaurant/dish/menu',
+            type: 'post',
+            dataType: 'json',
+            success: function (data) {
+            	
+                $('#menubox').html('');
+             
+                $.each(data.dishes, function(index, dish) {
+
+                    text = '<div class="dish pull-left btn btn-default" id="' + dish['id'] + '">'
+                    + '<div style="width:176px; height: 90px"><img src="' + dish['imagepath'] + '" style="width:176px"/></div>'
+                    + '<div class="name" style="width:176px;word-wrap: break-word;">' + dish['name'] + '</div>'
+                    + '$ <span class="price">' + dish['price'] + '</span>'
+                    + '</div>';
+
+                    $('#menubox').append(text);
+                    
+                });
+            },
+            data: { groupid: groupid }
+        });
+	});
+	
+	$('#menubox').on('click', '.dish', function() {
+			
+		var text = '';
+
+		var id = $(this).attr('id');
+		var price = $(this).find( ".price" ).html();
+		var name = $(this).find( ".name" ).html();
+		 
+		text = '<div class="item btn btn-default clearfix" style="width: 100%" itemid="' + id + '">' 
+			  + '<span class="pull-left">' 
+			  + '<span class="glyphicon glyphicon-remove"></span>&nbsp;&nbsp;' 
+			  + $(this).find( ".name" ).html() 
+		      + '</span><span class="pull-right">' 
+		      + $(this).find( ".price" ).html()
+		      + '</span></div>'; 
+
+		var item = {id: id, name: name, price: price}; 
+		orderItems.push(item);
+		
+		$('#orderbox').append(text);
+
+		total = total + parseFloat(price);
+		subtotal = total.toFixed(2);
+		
+		tax = total * taxrate;
+		tax = tax.toFixed(2);
+
+		totalprice =  parseFloat(total) + parseFloat(tax);
+		totalprice = totalprice.toFixed(2);
+
+		$('#subtotal').html(subtotal);
+		$('#tax').html(tax);
+		$('#total').html(totalprice);
+
+	});
+
+
+	$('#orderbox').on('click', '.item', function() {
+
+		resetData();
+
+		var index = $(this).index();
+		var itemid = $(this).attr('itemid');
+
+        $(this).remove();
+        orderItems.splice( index, 1 );
+        
+		$.each(orderItems, function(key, entry) {
+
+			var price = entry.price;
+			
+			total = total + parseFloat(price);
+			subtotal = total.toFixed(2);
+			
+			tax = total * taxrate;
+			tax = tax.toFixed(2);
+
+			totalprice =  parseFloat(total) + parseFloat(tax);
+			totalprice = totalprice.toFixed(2);
+
+			$('#subtotal').html(subtotal);
+			$('#tax').html(tax);
+			$('#total').html(totalprice);	
+
+		});		
+	});
+	
+	$('#ordernow').click(function(){
+
+        $.ajax({
+            url: '/restaurant/order/ordernow',
+            type: 'post',
+            dataType: 'json',
+            success: function (data) {
+
+            	  alert("order is OK");
+            	  
+            	  orderItems.length = 0;
+
+              	  var jsonString =JSON.stringify(data);
+                  $('#dump').html(jsonString);
+            	  resetData();
+            	  
+            	  $('#orderbox').html('');  
+        		  
+            },
+            data: { orderItems : orderItems }
+        });
+	});
+
+	$('#orderlist').click(function(){
+
+		if( !$('#orderlistbox').is(":visible") )
+		{
+            $.ajax({
+                url: '/restaurant/order/list',
+                type: 'post',
+                dataType: 'html',
+                success: function (data) {
+                  	  $('#orderlistbox').html(data);
+                      $('#orderlistbox').toggle();
+                      $("#orderlistbox").animate({left: "0px"},function(){
+    
+                      });
+                },
+                //data: { orderItems : orderItems }
+            });
+		}
+		else
+		{
+            $("#orderlistbox").animate({left: "-850px"},function(){
+                $('#orderlistbox').toggle();
+            });			
+		}
+	});
+});
+
+function resetData()
+{
+	  total = 0.00;
+	  subtotal = 0.00;
+	  tax = 0.00;
+	  totalprice = 0;
+
+	  $('#subtotal').html('');
+	  $('#tax').html('');
+	  $('#total').html('');	
+}
+-->
+</script>
+
+<script type="text/javascript">
+<!--
+$(document).ready(function(){
+	$('#popmenu').click(function(){
+
+		$('#dishmenu').toggle();
+		$("#dishmenu").animate({left: "0px"},function(){
+
+		});
+		
+	});
+
+	$('#dishmenu').click(function(){
+
+		$("#dishmenu").animate({left: "-850px"},function(){
+			$('#dishmenu').toggle();
+		});
+		
+	});
+});
+-->
+</script>
+
+<script type="text/javascript">
+<!--
+$(document).ready(function(){
+
+	$("#myModal").on('show.bs.modal', function(event){
+
+		/*
+        var button = $(event.relatedTarget);
+        
+        var titleData = button.data('title');
+        $(this).find('.modal-title').text(titleData);
+
+        var contentData = button.data('content');
+        $(this).find('.modal-body').text(contentData);
+        */
+    });
+	
+});
+-->
+</script>
+
+<style>
+div.fixed {
+    position: relative;
+    top: 0px;
+    left: -850px;
+    width: 850px; 
+    display:none;
+    z-index: 100000; 
+}
+</style>
+
+<div id="myModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header  alert-primary">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                <h4 class="modal-title">Find Customer</h4>
+            </div>
+            <div class="modal-body">
+            		<div class="form-group">
+        				<label for="name">Search</label>
+        				<input type="text" class="form-control" id="name" name="name" placeholder="Enter Name or Phone Number or Email">
+        			</div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="position: absolute">
+    <div class="fixed" id="dishmenu">
+    
+        <div class="row">
+        
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Dish Groups</h3>
+                    </div>
+                    <div class="panel-body">
+                   
+                
+                     <?php foreach ($dishgroups as $dishgroup) : ?>
+                        <div class="dishgroup pull-left btn btn-default" style="margin-bottom: 2px; width: 200px" groupid="<?php echo $dishgroup->id;?>">
+                            &nbsp;
+                            <br/>
+                            
+                            <?php echo $this->escapeHtml($dishgroup->name);?>
+                            
+                            <br/>
+                            &nbsp;
+                        </div>
+            
+                     <?php endforeach; ?>
+                     
+                    </div>
+                </div>
+            </div>
+        </div>                  
+    </div>
+</div>
+
+<div style="position: absolute">
+    <div class="fixed" id="orderlistbox">
+     </div>
+</div>
+   
+<div id="dump"></div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-success">
+            <div class="panel-heading clearfix">
+                <h3 class="panel-title pull-left" style="padding-top: 7.5px;">
+                    <span class="glyphicon glyphicon-th" id="popmenu"></span>&nbsp;<?php echo $this->translate("Menu") ?>
+                </h3>
+                <div class="btn-group pull-right">
+                    <a class="btn btn-default btn-sm" id="orderlist">Order List</a>
+                    <a class="btn btn-default btn-sm" href="<?php echo $this->url('restorder', array('action'=>'monitor'));?>">Monitor</a>
+                </div>
+            </div>
+        </div>
+    </div>                   
+</div>
+
+<div class="row">
+
+    <div class="col-md-9">
+        <div class="panel panel-primary">
+            <div class="panel-heading clearfix">
+                <h3 class="panel-title pull-left" style="padding-top: 7.5px;">Dishes</h3>
+            </div>
+            <div class="panel-body">
+            
+                <div id="menubox" style="height: 160px">
+                
+                 <?php foreach ($dishes as $dish) : ?>
+                 <div class="dish pull-left btn btn-default" id="<?php echo $this->escapeHtml($dish->id)?>">
+                         <div style="width:176px; height: 90px">
+                            <img src="<?php echo $this->escapeHtml($dish->imagepath)?>" style="width:100%; height:100%"/>
+                         </div>
+                         <div class="name" style="width:176px;word-wrap: break-word;"><?php echo $this->escapeHtml($dish->name);?></div>
+                         $ <span class="price"><?php echo $this->escapeHtml($dish->price);?></span>
+                 </div>
+                 <?php endforeach; ?>
+                </div>
+                 
+            </div>
+        </div>
+    </div>
+    
+        <div class="col-md-3">
+        <div class="panel panel-default">
+            <div class="panel-heading clearfix">
+                <h3 class="panel-title pull-left" style="padding-top: 7.5px;"><?php echo $this->translate('Orders') ?></h3>
+            </div>
+            <div class="panel-body">
+            
+                <div id="orderbox">
+                </div>
+                <hr/>
+                <div class="clearfix"><span class="pull-left">SUB TOTAL</span><span class="pull-right" id="subtotal">0.00</span></div>
+                <div class="clearfix"><span class="pull-left">TAX</span><span class="pull-right" id="tax">0.00</span></div>
+                <div class="clearfix"><span class="pull-left">TOTAL</span><span class="pull-right" id="total">0.00</span></div>
+                
+                 <div class="btn btn-success" style="margin-top: 10px; width: 100%" id="ordernow">
+                        &nbsp;
+                        <br/>
+                        Order NOW.
+                        <br/>
+                        &nbsp;
+                 </div>
+                 <div class="btn btn-success" style="margin-top: 10px; width: 100%" data-toggle="modal" data-target="#myModal">
+                        &nbsp;
+                        <br/>
+                        Customer.
+                        <br/>
+                        &nbsp;
+                 </div>
+            </div>
+        </div>
+    </div>
+    
+</div>      

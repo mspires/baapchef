@@ -1,0 +1,11 @@
+CREATE TABLE creditcard (
+	id int(11) NOT NULL auto_increment,
+	type ENUM('customer', 'restaurant'),
+	tid int(11) NOT NULL,
+	number varchar(50) NOT NULL,
+	name varchar(100) NOT NULL,
+	cvs varchar(10) NOT NULL,
+	year varchar(4) NOT NULL,
+	month varchar(4) NOT NULL,
+	PRIMARY KEY (id)
+);

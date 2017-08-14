@@ -1,0 +1,8 @@
+CREATE TABLE `session` (
+`id` CHAR(32) NOT NULL DEFAULT '',
+`name` VARCHAR(255) NOT NULL,
+`modified` INT(11) NULL DEFAULT NULL,
+`lifetime` INT(11) NULL DEFAULT NULL,
+`data` TEXT NULL,
+PRIMARY KEY (`id`)
+)COLLATE='utf8_general_ci' ENGINE=InnoDB;

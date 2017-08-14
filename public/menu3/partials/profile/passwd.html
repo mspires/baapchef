@@ -1,0 +1,62 @@
+<div ng-controller="ChangePwdCtrl">
+
+	<div class="row">
+	
+	    <div class="col-md-4">            
+	        <p>
+	        Please complete the following form to change your password.
+	        </p>
+	        
+	  	     <form ng-submit="submit()" >
+	    		<div class="form-group">
+					<label for="name">User Name:</label>
+					<input type="email" class="form-control" ng-model="user.email" placeholder="example@email.com">
+				</div>
+				
+				<div class="form-group">
+					<label for="name">Expired Password:</label>
+					<input type="password" class="form-control" ng-model="user.oldpwd" placeholder="********">
+				</div>    			    			
+	
+				<div class="form-group">
+					<label for="name">New Password:</label>
+					<input type="password" class="form-control" ng-model="user.newpwd" placeholder="********">
+				</div>   
+	
+				<div class="form-group">
+					<label for="name">Verify New Password:</label>
+					<input type="password" class="form-control" ng-model="user.confirmpwd" placeholder="********">
+				</div>           			
+				
+				<button type="submit" class="btn btn-primary">Save</button>
+				<button type="submit" class="btn btn-default" ng-click="goback()">Cancel</button>
+			</form>
+		</div>
+		                    
+		                    
+		<div class="col-md-4">            
+		    <div class="panel panel-default">
+		        <div class="panel-heading">
+		            <h3 class="panel-title">Helpful Tips</h3>
+		        </div>
+		        <div class="panel-body">
+		            <p>
+		            For your security, new passwords must meet the following requirements:
+		            </p>
+		            <ul>
+		                <li>must be between 8 to 40 characters in length</li>
+		                <li>must contain at least one upper case character, on lower case character and one number</li>
+		                <li>cannot be a previous used password</li>
+		                <li>avoid using special characters</li>
+		            </ul>
+		            
+		            For enhanced security, do not use proper names, words commonly found 
+		            in the dictionary or repeating sequences of numbers.
+		            
+		        </div>
+		    </div>
+		</div>                    
+	                
+	</div>
+	
+</div>

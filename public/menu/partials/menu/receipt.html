@@ -1,0 +1,85 @@
+<div class="modal-header">
+    <h3 class="modal-title">Receipt</h3>
+</div>
+<div class="modal-body">
+        
+	<div class="row">
+	    <div class="col-md-12">
+	        <div class="panel panel-success">
+	            <div class="panel-heading clearfix">
+	                <h3 class="panel-title pull-left" style="padding-top: 7.5px;">
+	                    <span class="glyphicon glyphicon-th" id="popmenu"></span>&nbsp;Order
+	                </h3>
+	                <div class="btn-group pull-right">
+	                    <a class="btn btn-default btn" ng-click="print()">Print</a>
+	                </div>	                
+	            </div>
+	        </div>
+	    </div>                   
+	</div>
+	
+	<div class="row">
+	
+	    <div class="col-md-12">
+	        <div class="panel panel-default">
+	        
+	        
+	            <div class="panel-body">
+	                <div style="text-align: center">
+	                    <h3>{{restaurant.name}}</h3>
+	                    
+	                        <div>{{address.address1}}</div>
+		                    <div>{{address.city}} 
+		                        {{address.state}} 
+		                        {{$address.zip}}</div>
+	               
+	                    <div>{{restaurant.phone}}</div>  
+	                </div>
+	                
+	                <table  style="margin-top: 20px; width: 100%">
+	                 <tr ng-repeat="orderitem in orderitems">
+	                     <td>
+	                        <img src="{{orderitem.image}}" style="width: 64px" />
+	                     </td>
+	                     <td style="vertical-align: middle;" data-title="Name">{{orderitem.name}}</td>
+	                     <td style="vertical-align: middle;" data-title="Quantity">{{orderitem.qty}}</td>
+	                     <td style="vertical-align: middle;" data-title="Price">{{orderitem.price | currency:"$ " }}</td>
+	                 </tr>
+	                </table>
+	                <hr/>
+	                <table style="width: 100%">
+	                    <tr>
+	                        <td>Sub Total</td>
+	                        <td style="text-align: right">{{getSubTotal() | currency:"$ " }}</td>
+	                    </tr>   
+	                    <tr>
+	                        <td>Tax</td>
+	                        <td style="text-align: right">{{ getTax() | currency:"$ " }}</td>
+	                    </tr>  
+	                    <tr>
+	                        <td>Total</td>
+	                        <td style="text-align: right">{{ getTotal() | currency:"$ " }}</td>
+	                    </tr>                                               
+	                </table>   
+	                
+	                <div  style="margin-top: 20px; text-align: center">
+	                	{{order.orderdate}}
+	                </div>
+	                
+	                <hr/>
+	                
+	                Became a member of manpuku.
+	                It is easy. just use you smart phone and install baapchef.
+	                or ask front desk. 
+	                
+	            </div>
+	        </div>
+	    </div>
+	</div>
+        
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+</div>	

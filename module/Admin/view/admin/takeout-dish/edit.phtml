@@ -1,0 +1,126 @@
+<?php
+$title = 'Edit dish';
+$this->headTitle($title);
+?>
+
+<link rel="stylesheet" href="/css/dropzone.css?v=1422115121" />
+
+<script type="text/javascript" src="/js/dropzone.js"></script>
+<script type="text/javascript" src="/js/jquery.zeroclipboard.min.js"></script>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+	$('#cancelbutton').click(function(){
+		parent.history.back();
+		return false;
+	});
+
+	Dropzone.options.myAwesomeDropzone = {
+        maxFiles: 1, // Number of files at a time
+        maxFilesize: 10, //in MB
+        maxfilesexceeded: function(file)
+        {
+         alert('You have uploaded more than 1 Image. Only the first file will be uploaded!');
+        }, 
+    	init: function() {
+
+			this.on("success", function(file, data) { 
+
+				$("#imageurl").html(data.url);
+				$("#dropzone").hide();
+			});
+  		}
+	}	
+});
+
+
+
+</script>
+
+<div class="row">
+
+    <div class="col-sm-4">
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title"><?php echo $this->escapeHtml($dish->name);?></h3>
+            </div>
+            <div class="panel-body">
+                <p>
+                    <img src="<?php echo $this->escapeHtml($dish->imagepath)?>" />
+                </p>
+                <p>
+                    $ <?php echo $this->escapeHtml($dish->price);?>
+                </p>
+                <p>
+                    <?php echo $this->escapeHtml($dish->note);?>
+                </p>
+                
+                <div id="dropzone">
+                	<form action="<?php echo $this->url('admintakeoutdish', array('action' => 'uploaddragfile')) ?>" class="dropzone" id="my-awesome-dropzone" method="post" enctype="multipart/form-data">
+                		<input type="hidden" name="dishfilename" id="dishfilename" value="<?php echo $this->escapeHtml($dish->filename)?>"/>
+                		<div class="dz-message">
+                    		Drop files here or click to upload.<br />
+                  		</div>
+                	</form>
+                </div>
+                                
+            </div>
+        </div>
+    </div>
+
+
+<div class="col-sm-4">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><?php echo $this->escapeHtml($title); ?></h3>
+            </div>
+            <div class="panel-body">
+                
+<?php
+$form = $this->form;
+$form->setAttribute('action', $this->url(
+    'admintakeoutdish',
+    array(
+        'action' => 'edit',
+        'id'     => $this->id,
+    )
+));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+echo $this->formHidden($form->get('id'));
+echo $this->formHidden($form->get('rid'));
+?>
+
+
+<div class="form-group">
+<?php echo $this->formRow($form->get('name'));?>
+</div>
+
+<div class="form-group">
+<?php echo $this->formLabel($form->get('price'));?>
+<div class="input-group">
+<div class="input-group-addon">$</div>
+<?php echo $this->formSelect($form->get('price'));?>
+</div>
+</div>
+
+<div class="form-group">
+<?php echo $this->formRow($form->get('note'));?>
+</div>
+
+<div class="form-group">
+<?php echo $this->formSubmit($form->get('submit'));?>
+&nbsp;<?php echo $this->formelement($form->get('cancel'));?>
+</div>
+
+<?php 
+echo $this->form()->closeTag();
+?>
+            </div>
+        </div>            
+    </div>
+</div>

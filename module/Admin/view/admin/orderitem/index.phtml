@@ -1,0 +1,53 @@
+<?php
+
+$title = 'Order Items';
+$this->headTitle($title);
+?>
+
+<div class="row">
+
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><?php echo $this->translate($title) ?></h3>
+            </div>
+            <div class="panel-body">
+            
+
+                 <table class="table">
+                 <thead>
+                 <tr>
+                     <th>Dish</th>
+                     <th>Name</th>
+                     <th>Quantity</th>
+                     <th>Price</th>
+                     <th>Note</th>
+                     <th>&nbsp;</th>
+                 </tr>
+                 </thead>
+                 <tbody>
+                 <?php foreach ($orderitems as $orderitem) : ?>
+                 <tr>
+                     <td>
+                        <img src="<?php echo $this->escapeHtml($orderitem->image)?>" />
+                     </td>
+                     <td style="vertical-align: middle;" data-title="Name"><?php echo $this->escapeHtml($orderitem->name);?></td>
+                     <td style="vertical-align: middle;" data-title="Quantity"><?php echo $this->escapeHtml($orderitem->qty);?></td>
+                     <td style="vertical-align: middle;" data-title="Price"><?php echo $this->escapeHtml($orderitem->price);?></td>
+                     <td style="vertical-align: middle;" data-title="Note"><?php echo $this->escapeHtml($orderitem->note);?></td>
+                     <td style="vertical-align: middle;">
+                         <a class="btn btn-default btn-sm" href="<?php echo $this->url('adminorderitem',
+                             array('action'=>'edit', 'id' => $orderitem->id));?>">Edit</a>
+                         <a class="btn btn-default btn-sm" href="<?php echo $this->url('adminorderitem',
+                             array('action'=>'delete', 'id' => $orderitem->id));?>">Delete</a>
+                     </td>
+                 </tr>
+                 <?php endforeach; ?>
+                 </tbody>
+                 </tbody>
+                 </table>
+
+            </div>
+        </div>
+    </div>
+</div>   

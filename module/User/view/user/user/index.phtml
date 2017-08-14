@@ -1,0 +1,42 @@
+<?php
+
+$title = 'Users';
+$this->headTitle($title);
+?>
+
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+ <p>
+     <a href="<?php echo $this->url('adminuser', array('action'=>'add'));?>">Add new user</a>
+ </p>
+
+ <table class="table">
+ <tr>
+     <th style="width: 50px">&nbsp;</th>
+     <th>Name</th>
+     <th>Email</th>
+     <th>Phone</th>
+     <th>Role</th>
+     <th>Status</th>
+     <th>&nbsp;</th>
+ </tr>
+ <?php foreach ($users as $user) : ?>
+ <tr>
+     <td>
+        <img src="<?php echo $this->escapeHtml($user->image)?>" width=32 />
+     </td>
+     <td style="vertical-align: middle;">    
+        <?php echo $this->escapeHtml($user->name);?>
+     </td>
+     <td style="vertical-align: middle;" ><?php echo $this->escapeHtml($user->email);?></td>
+     <td style="vertical-align: middle;" ><?php echo $this->escapeHtml($user->phone);?></td>
+     <td style="vertical-align: middle;" ><?php echo $this->escapeHtml($user->role_name);?></td>
+     <td style="vertical-align: middle;" ><?php echo $this->escapeHtml($user->status);?></td>
+     <td style="vertical-align: middle;" >
+         <a href="<?php echo $this->url('adminuser',
+             array('action'=>'edit', 'id' => $user->id));?>">Edit</a>
+         <a href="<?php echo $this->url('adminuser',
+             array('action'=>'delete', 'id' => $user->id));?>">Delete</a>
+     </td>
+ </tr>
+ <?php endforeach; ?>
+ </table>

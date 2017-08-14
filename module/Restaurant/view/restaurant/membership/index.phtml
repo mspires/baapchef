@@ -1,0 +1,37 @@
+<?php
+$title = 'Memberships';
+$this->headTitle($title);
+?>
+
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+
+<div class="row">
+ <?php foreach ($memberships as $membership) : ?>
+
+     <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><?php echo $this->escapeHtml($membership->customerName);?></h3>
+            </div>
+            <div class="panel-body" style="height: 200px">
+                <p>
+                    <img src="<?php echo $this->escapeHtml($membership->cimage)?>" style="width: 64px" />
+                </p>
+                <p>
+                    SILVER <!-- <?php echo $this->escapeHtml($membership->level);?>  -->
+                </p>
+                <p>
+                    Name : <?php echo $this->escapeHtml($membership->customerName);?>
+                </p>
+                <p>
+                    Phone : <?php echo $this->escapeHtml($membership->customerPhone);?>
+                </p>
+                <p>
+                    Since : 09/2015
+                </p>                
+            </div>
+        </div>
+    </div>
+
+ <?php endforeach; ?>
+</div>

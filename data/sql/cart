@@ -1,0 +1,24 @@
+CREATE TABLE cart (
+	id int(11) NOT NULL auto_increment,
+	rid int(11) NOT NULL,
+	cid int(11) NOT NULL,
+	createdate DATETIME  NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	state int(1) NOT NULL DEFAULT 0,
+	PRIMARY KEY (id)
+);
+    
+insert into cart (rid, cid,createdate,state) values (2, 1, now(),0);
+insert into cart (rid, cid,createdate,state) values (3, 2, now(),0);
+insert into cart (rid, cid,createdate,state) values (4, 3, now(),0);
+
+DROP table cartitem;
+CREATE TABLE cartitem (
+     id int(11) NOT NULL auto_increment,
+     cartid int(11) NOT NULL,
+     dishid int(11) NOT NULL,
+     qty int(11) NOT NULL DEFAULT 1,
+     note varchar(100) NOT NULL, 
+     createdate DATETIME  NOT NULL DEFAULT CURRENT_TIMESTAMP,
+     state int(1) NOT NULL DEFAULT 0,
+     PRIMARY KEY (id)
+);

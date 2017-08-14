@@ -1,0 +1,93 @@
+<?php
+$title = 'Profile';
+$this->headTitle($title);
+?>
+
+<style>
+ul.nav-pills {
+    width: 300px;
+    margin: 0 auto;
+}
+</style>
+
+<div class="jumbotron">
+    <div style="width: 100%; text-align: center; font-size: 16px">
+        <p> <img src="<?php echo $this->escapeHtml($restaurant->image)?>" width="200px" /> <p>
+        <p> <?php echo $restaurant->name ?> <p>
+        <p> <?php echo $restaurant->email ?> <p>
+        <p> <?php echo $restaurant->phone ?> <p>
+        <p>
+            <a class="btn btn-default btn" href="<?php echo $this->url('restdish',array('action' => 'menu'));?>">Menu</a>
+            <a class="btn btn-default btn" href="<?php echo $this->url('restorder',array('action' => 'monitor'));?>">Monitor</a>
+            <a class="btn btn-default btn" href="<?php echo $this->url('restorder',array('action' => 'reservation'));?>">Reservation</a>
+            
+        </p>        
+    </div>        
+</div>
+
+<div class="row">
+
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><?php echo $this->translate('Takeout Dishes') ?></h3>
+            </div>
+            <div class="panel-body">
+
+                <p>
+                    <b>Want to takeout dish</b>
+                </p>
+                <p>
+                    Use our App now.  
+                </p>
+                <p>
+                <img src="../img/orderbyphone.png" width="200px" />
+                </p> 
+             </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><?php echo $this->translate('In restaurant Dishes') ?></h3>
+            </div>
+            <div class="panel-body">
+                <p>
+                    <b>Order your dish yourself.</b>
+                </p>
+                <p>
+                    Don't need to wait waiter 
+                </p>
+                <p>
+                    We can help you make an order with your phone.
+                </p>
+                <p>
+                <img src="../img/waiter.png" width="200px" />
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><?php echo $this->translate('Membership') ?></h3>
+            </div>
+            <div class="panel-body">
+                <p>
+                    <b>Join your favorite restaurant memeber</b>
+                </p>
+                <p>
+                    If you go inside a restaurant that has partnership with us and you are not member of this restaurant yet, 
+                    you can get a notice for joining membership for this restaurant.
+                </p>
+                <p>
+                    and if you agree to join membership, you can get lots of benefit what this restaurant is providing.
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+</div>

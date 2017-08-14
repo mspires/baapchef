@@ -1,0 +1,28 @@
+CREATE TABLE dishpicture (
+	id int(11) NOT NULL auto_increment,
+	rid int(11)NOT NULL,
+	dishid int(11)NOT NULL,
+	filename varchar(100) NOT NULL,
+	PRIMARY KEY (id)
+);
+
+CREATE TABLE tdishpicture (
+	id int(11) NOT NULL auto_increment,
+	rid int(11)NOT NULL,
+	dishid int(11)NOT NULL,
+	filename varchar(100) NOT NULL,
+	PRIMARY KEY (id)
+);
+
+INSERT INTO dishpicture (rid,dishid,filename)VALUES  (10000,1,'menu1.png');
+INSERT INTO dishpicture (rid,dishid,filename)VALUES  (10000,2,'menu2.png');
+INSERT INTO dishpicture (rid,dishid,filename)VALUES  (10000,3,'menu3.png');
+INSERT INTO dishpicture (rid,dishid,filename)VALUES  (10000,4,'menu4.png');
+INSERT INTO dishpicture (rid,dishid,filename)VALUES  (10000,5,'menu5.png');
+
+INSERT INTO tdishpicture (rid,dishid,filename)VALUES  (10000,1,'menu1.png');
+INSERT INTO tdishpicture (rid,dishid,filename)VALUES  (10000,2,'menu2.png');
+INSERT INTO tdishpicture (rid,dishid,filename)VALUES  (10000,3,'menu3.png');
+INSERT INTO tdishpicture (rid,dishid,filename)VALUES  (10000,4,'menu4.png');
+INSERT INTO tdishpicture (rid,dishid,filename)VALUES  (10000,5,'menu5.png');
+

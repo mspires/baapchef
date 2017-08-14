@@ -1,0 +1,48 @@
+<?php
+$title = 'Orders';
+?>
+
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading clearfix">
+                <h3 class="panel-title pull-left" style="padding-top: 7.5px;">
+                    <span class="glyphicon glyphicon-th" id="popmenu"></span>&nbsp;<?php echo $this->translate($title) ?>
+                </h3>
+            </div>
+            <div class="panel-body">
+            
+                 <table class="table">
+                 <thead>
+                 <tr>
+                     <th>&nbsp;</th>
+                     <th>Name</th>
+                     <th>Order Type</th>
+                     <th>Order Status</th>
+                     <th>&nbsp;</th>
+                 </tr>
+                 </thead>
+                 <tbody>
+
+                 <?php foreach ($orders as $order) : ?>
+                 <tr>
+                     <td>
+                        <img src="<?php echo $this->escapeHtml($order->cimage)?>" style="width:64px"/>
+                     </td>
+                     <td style="vertical-align: middle;" data-title="Name"><?php echo $this->escapeHtml($order->cname);?></td>
+                     <td style="vertical-align: middle;" data-title="Order Type"><?php echo $this->escapeHtml($order->ordertype);?></td>
+                     <td style="vertical-align: middle;" data-title="Order Status"><?php echo $this->escapeHtml($order->rstate);?></td>
+                     <td style="vertical-align: middle;" data-title="">
+                     </td>
+                 </tr>
+                 <?php endforeach; ?>                 
+                 
+                 </tbody>
+                 </table>
+                 
+            </div>
+        </div>
+    </div>
+</div>

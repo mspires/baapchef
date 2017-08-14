@@ -1,0 +1,48 @@
+<?php
+
+$title = 'Permission';
+$this->headTitle($title);
+?>
+
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+
+ <ul>
+    <li>
+     <a href="/system/role">Role</a>
+    </li>
+    
+    <li>
+     <a href="/system/resource">Resource</a>
+    </li>
+    
+    <li>
+     <a href="/system/permission">Permission</a>
+    </li>
+</ul>
+ 
+
+ <table class="table">
+ <tr>
+     <th>ID</th>
+     <th>Name</th>
+     <th>Resource ID</th>
+     <th>Resource Name</th>
+     <th>&nbsp;</th>
+ </tr>
+ 
+ <?php foreach ($permissions as $permission) : ?>
+ <tr>
+ <td><?php echo $this->escapeHtml($permission->id);?></td>
+     <td><?php echo $this->escapeHtml($permission->permission_name);?></td>
+     <td><?php echo $this->escapeHtml($permission->resource_id);?></td>
+     <td><?php echo $this->escapeHtml($permission->resource_name);?></td>
+     <td>
+         <a href="<?php echo $this->url('system',
+             array('action'=>'edit', 'id' => $permission->id));?>">Edit</a>
+         <a href="<?php echo $this->url('system',
+             array('action'=>'delete', 'id' => $permission->id));?>">Delete</a>
+     </td>
+ </tr>
+ <?php endforeach; ?>
+  
+</table>

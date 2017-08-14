@@ -1,0 +1,29 @@
+<?php
+$title = 'Add new Restaurant';
+$this->headTitle($title);
+?>
+
+<style>
+<!--
+form label, form label span {
+ display: block;
+}
+-->
+</style>
+
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<?php
+
+$form->setAttribute('action', $this->url('restaurant', array('action' => 'add')));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+echo $this->formHidden($form->get('id'));
+echo $this->formRow($form->get('rid'));
+echo $this->formRow($form->get('cid'));
+echo $this->formRow($form->get('level'));
+echo $this->formRow($form->get('status'));
+echo $this->formSubmit($form->get('submit'));
+echo $this->form()->closeTag();
+
+?>

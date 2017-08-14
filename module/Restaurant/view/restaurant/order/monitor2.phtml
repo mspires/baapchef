@@ -1,0 +1,246 @@
+<?php 
+use Order\Model\ROrderType;
+use Order\Model\ROrderState;
+
+$title = "";
+?>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+	$( ".order" ).each(function( index ) {
+
+		var orderbox = $(this);
+		var orderid = $(this).attr('orderid');
+
+	    $.ajax({
+            url: '/restaurant/orderitem/view',
+            type: 'post',
+            dataType: 'json',
+            success: function (data) {
+
+                orderbox.find('.itemsbox').html('');
+
+                $.each(data["orderitems"], function(index, orderitem) {
+
+                    text = '<div class="dish" id="' + orderitem['id'] + '">'
+                        + '<img src="' + orderitem['image'] + '" style="width:150px"/>'
+                        + '<span class="name">' + orderitem['name'] + '</span>'
+                        + '</div>';
+                        
+                    orderbox.find('.itemsbox').append(text);
+                    
+                });
+            },
+            data: { orderid: orderid }
+        });	
+	});
+
+				
+	$('.order').click(function(){
+
+		var orderbox = $(this);
+		var orderid = $(this).attr('orderid');
+
+	    $.ajax({
+            url: '/restaurant/orderitem/view',
+            type: 'post',
+            dataType: 'json',
+            success: function (data) {
+
+            	//  var jsonString =JSON.stringify(data);
+                //  $('#dump').html(jsonString);
+                  
+                orderbox.find('.itemsbox').html('');
+
+                $.each(data["orderitems"], function(index, orderitem) {
+
+                    text = '<div class="dish" id="' + orderitem['id'] + '">'
+                        + '<img src="' + orderitem['image'] + '" style="width:150px"/>'
+                        + '<span class="name">' + orderitem['name'] + '</span>'
+                        //+ '$ <span class="price">' + orderitem['price'] + '</span>'
+                        + '</div>';
+                        
+                    orderbox.find('.itemsbox').append(text);
+                    
+                });
+              
+            },
+            data: { orderid: orderid }
+        });		
+		
+	});
+
+	
+	$('.itembox').on('click', '.orderincook', function() {
+		
+		var text = '';
+
+		var itembox = $(this);
+		var orderid = $(this).attr('orderid');
+
+	    $.ajax({
+            url: '/restaurant/order/incook',
+            type: 'post',
+            dataType: 'json',
+            success: function (data) {
+
+                //var jsonString =JSON.stringify(data);
+                //$('#dump').html(jsonString);
+                
+            	var parent = itembox.parent().parent();
+                var orderinfo = parent.find('.order').find('.orderinfo');
+                orderinfo.html('');
+
+                var order = data['order'];
+                
+                text = '<div class="clearfix">'
+                        + '<div class="pull-left">' + order['ordertype'] + '</div>'
+                        + '<div class="pull-right">' + order['rstate'] + '</div>'
+                        + '</div>';
+                    
+                orderinfo.html(text);
+
+                var itemsbox = parent.find('.order').find('.itemsbox');
+                itemsbox.html('');    
+                    
+                $.each(data["orderitems"], function(index, orderitem) {
+
+                    text = '<div class="dish" id="' + orderitem['id'] + '">'
+                        + '<img src="' + orderitem['image'] + '" style="width:150px"/>'
+                        + '<span class="name">' + orderitem['name'] + '</span>'
+                        //+ '$ <span class="price">' + orderitem['price'] + '</span>'
+                        + '</div>';
+                        
+                    itemsbox.append(text);
+                    
+                });                                
+                 
+            },
+            data: { orderid: orderid }
+        });		
+	});
+
+	$('.itembox').on('click', '.orderout', function() {
+		
+		var text = '';
+
+		var itembox = $(this);
+		var orderid = $(this).attr('orderid');
+
+	    $.ajax({
+            url: '/restaurant/order/out',
+            type: 'post',
+            dataType: 'json',
+            success: function (data) {
+
+                var order = data['order'];
+
+                $("#order_" + order['id']).hide();
+            	/*
+            	var parent = itembox.parent().parent();
+                var orderinfo = parent.find('.order').find('.orderinfo');
+                orderinfo.html('');
+                
+                text = '<div class="clearfix">'
+                        + '<div class="pull-left">' + order['ordertype'] + '</div>'
+                        + '<div class="pull-right">' + order['rstate'] + '</div>'
+                        + '</div>';
+                    
+                orderinfo.html(text);
+
+                var itemsbox = parent.find('.order').find('.itemsbox');
+                itemsbox.html('');    
+                    
+                $.each(data["orderitems"], function(index, orderitem) {
+
+                    text = '<div class="dish" id="' + orderitem['id'] + '">'
+                        + '<img src="' + orderitem['image'] + '" style="width:150px"/>'
+                        + '<span class="name">' + orderitem['name'] + '</span>'
+                        //+ '$ <span class="price">' + orderitem['price'] + '</span>'
+                        + '</div>';
+                        
+                    itemsbox.append(text);
+                    
+                });                                
+                */
+            },
+            data: { orderid: orderid }
+        });		
+	});
+});
+
+
+
+</script>
+<div id="dump">
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-success">
+            <div class="panel-heading clearfix">
+                <h3 class="panel-title pull-left" style="padding-top: 7.5px;">&nbsp;</h3>
+                <div class="btn-group pull-right">
+                    <a class="btn btn-default btn-sm" href="<?php echo $this->url('restdish', array('action'=>'menu'));?>">Menu</a>
+                    <a class="btn btn-default btn-sm" href="<?php echo $this->url('restorder');?>">Order</a>
+                </div>
+            </div>
+        </div>
+    </div>                   
+</div>
+
+<?php 
+    $idx = 0;
+    foreach ($orders as $order) : 
+?>
+
+<?php 
+    if($idx % 3 == 0) echo "<div class='row'>";
+?>   
+ 
+ 
+    <div class="col-md-4" id="order_<?php echo $order->id ?>">
+        <div class="panel panel-default">
+            <div class="panel-heading clearfix">
+                <h3 class="panel-title pull-left">
+                    <img src="<?php echo $this->escapeHtml($order->cimage)?>" style="width:32px"/><?php echo $this->escapeHtml($order->cname);?>
+                </h3>
+                <div class="btn-group pull-right">
+                    <?php echo $order->id ?>
+                </div>            
+            </div>
+            <div class="panel-body">
+
+                 <div class="order" orderid="<?php echo $order->id ?>">
+                     <div class="orderinfo">
+                         <div class="clearfix">
+                             <div class="pull-left"><?php echo $this->escapeHtml($order->ordertype);?></div>
+                             <div class="pull-right"><?php echo $this->escapeHtml($order->rstate);?></div>
+                         </div>
+                     </div>
+                     
+                     <div class="itemsbox"></div>                 
+                 </div>
+       
+                 <div class="itembox" style="text-align: right">
+                     <span class="orderincook btn btn-default" orderid="<?php echo $order->id ?>" ><br/>IN Cook<br/>&nbsp;</span>
+                     <span class="orderout btn btn-primary" orderid="<?php echo $order->id ?>"><br/>&nbsp;&nbsp;Out&nbsp;&nbsp;<br/>&nbsp;</span>                 
+                </div> 
+                 
+            </div>
+        </div>
+    </div>
+
+<?php 
+    if($idx % 3 == 2) echo "</div>";
+    $idx = $idx + 1;
+?>   
+    
+
+<?php endforeach; ?>
+    
+<?php 
+    if($idx % 3 != 0) echo "</div>";
+?> 

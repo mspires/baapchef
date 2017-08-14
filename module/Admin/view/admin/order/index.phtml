@@ -1,0 +1,70 @@
+<?php
+
+$title = 'Orders';
+$this->headTitle($title);
+?>
+
+<div class="row">
+
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading clearfix">
+                <h3 class="panel-title pull-left" style="padding-top: 7.5px;"><?php if($current_restaurant){ echo $current_restaurant->name;} ?></h3>
+                <div class="btn-group pull-right">
+                      <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" >Restaurant &nbsp;&nbsp;<span class="caret" ></span></button>
+                        <ul class="dropdown-menu">
+                          <?php foreach ($restaurants as $restaurant) : ?>
+                            <li><a href="<?php echo $this->url('adminorder', array('action'=>'index', 'id' => $restaurant->id));?>"><?php echo $this->escapeHtml($restaurant->name);?></a></li>
+                          <?php endforeach; ?>
+                        </ul>
+                      </div>
+                </div>
+            </div>
+        </div>            
+    </div>
+
+    <?php if($current_restaurant){  ?>
+    
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><?php echo $this->translate($title) ?></h3>
+            </div>
+            <div class="panel-body">
+
+                 <table class="table">
+                 <thead>
+                 <tr>
+                     <th>Customer</th>
+                     <th>Order Date</th>
+                     <th>Schedule Date</th>
+                     <th>Take Out</th>
+                     <th>&nbsp;</th>
+                 </tr>
+                 </thead>
+                 <tbody>
+                 <?php foreach ($orders as $order) : ?>
+                 <tr>
+                     <td><?php echo $this->escapeHtml($order->cname);?></td>
+                     <td><?php echo $this->escapeHtml($order->orderdate);?></td>
+                     <td><?php echo $this->escapeHtml($order->scheduledate);?></td>
+                     <td><?php echo $this->escapeHtml($order->takeoutdate);?></td>
+                     <td>
+                         <a class="btn btn-default btn-sm" href="<?php echo $this->url('adminorderitem',
+                             array('action'=>'index', 'id' => $order->id));?>">View</a>
+                         <a class="btn btn-default btn-sm" href="<?php echo $this->url('adminorder',
+                             array('action'=>'edit', 'id' => $order->id));?>">Edit</a>
+                         <a class="btn btn-default btn-sm" href="<?php echo $this->url('adminorder',
+                             array('action'=>'delete', 'id' => $order->id));?>">Delete</a>
+                     </td>
+                 </tr>
+                 <?php endforeach; ?>
+                 </tbody>
+                  </table>
+
+            </div>
+        </div>
+    </div>
+    <?php }  ?>
+</div>                       

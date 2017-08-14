@@ -1,0 +1,10 @@
+CREATE TABLE dishgroup (
+	id int(11) NOT NULL auto_increment,
+	rid int(11)NOT NULL,
+	name varchar(100) NOT NULL,
+	note varchar(500) NOT NULL,
+	PRIMARY KEY (id)
+);
+
+  INSERT INTO dishgroup (rid, name,note)
+     VALUES  (1,'Breakfirst Entries',  '');

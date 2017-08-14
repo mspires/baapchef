@@ -1,0 +1,122 @@
+<?php
+
+$title = 'Takeout Dishes';
+$this->headTitle($title);
+?>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+	$('#popmenu').click(function(){
+
+		$('#dishmenu').toggle();
+		$("#dishmenu").animate({width: "300px"},function(){
+
+		});
+		
+	});
+
+	$('#dishmenu').click(function(){
+
+		$("#dishmenu").animate({width: "0px"},function(){
+			$('#dishmenu').toggle();
+		});
+		
+	});
+});
+
+
+
+</script>
+
+<style>
+div.fixed {
+    position: relative;
+    top: 0px;
+    left: 0px;
+    width: 0px; 
+    display:none;
+    z-index: 100000; 
+}
+</style>
+
+<div style="position: absolute">
+    <div class="fixed" id="dishmenu">
+    
+        <div class="row">
+        
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Dishes</h3>
+                    </div>
+                    <div class="panel-body">
+                        <ul class="list-group">
+                          <li class="list-group-item"><a href="<?php echo $this->url('mytakeoutdish',
+                                array('action'=>'index'), 
+                                array('query' => array('price' => '8.00')));?>">$ 8.00 dishes</a></li>
+                          <li class="list-group-item"><a href="<?php echo $this->url('mytakeoutdish',
+                                array('action'=>'index'), 
+                                array('query' => array('price' => '10.00')));?>">$ 10.00 dishes</a></li>
+                          <li class="list-group-item"><a href="<?php echo $this->url('mytakeoutdish',
+                                array('action'=>'index'), 
+                                array('query' => array('price' => '12.00')));?>">$ 12.00 dishes</a></li>
+                          <li class="list-group-item"><a href="<?php echo $this->url('mytakeoutdish',
+                                array('action'=>'index'), 
+                                array('query' => array('price' => '15.00')));?>">Appetizers and Snacks</a></li>
+                        </ul>                   
+                    </div>
+                </div>
+            </div>
+        </div>                  
+    </div>
+</div>
+
+<div class="row">
+
+
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    <span class="glyphicon glyphicon-th" id="popmenu"></span>&nbsp;<?php echo $this->translate($title) ?></h3>                                        
+            </div>
+            
+            <div class="panel-body">
+            
+                 <table class="table">
+                 <thead>
+                 <tr>
+                     <th>Dish</th>
+                     <th>Name</th>
+                     <th>Price</th>
+                     <th>Description</th>
+                     <?php if( null != $customerID ) {?>
+                     <th>Cart</th>
+                     <?php }?> 
+                 </tr>
+                 </thead>
+                 <tbody>
+                 <?php foreach ($dishes as $dish) : ?>
+                 <tr>
+                     <td>
+                        <img src="<?php echo $this->escapeHtml($dish->imagepath)?>" style="width:200px"/>
+                     </td>
+                     <td  style="vertical-align: middle;" data-title="Dish"><?php echo $this->escapeHtml($dish->name);?></td>
+                     <td style="vertical-align: middle;" data-title="Price">$ <?php echo $this->escapeHtml($dish->price);?></td>
+                     <td style="vertical-align: middle;" data-title="Note"><?php echo $this->escapeHtml($dish->note);?></td>
+                     <td style="vertical-align: middle;" data-title="">
+                         <?php if( null != $customerID ) {?>
+                         <a class="btn btn-default btn-sm" href="<?php echo $this->url('mytakeoutcart',
+                             array('action'=>'index', 'id' => $dish->id));?>">Add to Box</a>
+                         <?php }?>      
+                     </td>
+                 </tr>
+                 <?php endforeach; ?>
+                 </tbody>
+                 </table>
+                 
+            </div>
+        </div>
+    </div>
+</div>      

@@ -1,0 +1,77 @@
+<?php
+$title = 'Orders';
+$this->headTitle($title);
+
+$subtotal = 0.00;
+$taxrate = 0.0925;
+$tax = 0.00;
+?>
+
+<div class="row">
+
+    <div class="col-md-4">
+        <div class="panel panel-default">
+        
+        
+            <div class="panel-body">
+                <div style="text-align: center">
+                    <h3><?php echo $this->escapeHtml($restaurant->name);?></h3>
+                    
+                    <?php foreach ($addresses as $address) : ?>
+                    <div><?php echo $this->escapeHtml($address->address1);?></div>
+                    <div><?php echo $this->escapeHtml($address->city);?> 
+                        <?php echo $this->escapeHtml($address->state);?> 
+                        <?php echo $this->escapeHtml($address->zip);?></div>
+                    <?php endforeach; ?>  
+                    <div><?php echo $this->escapeHtml($restaurant->phone);?></div>  
+                </div>
+                
+                <table  style="margin-top: 20px; width: 100%">
+                 <?php foreach ($orderitems as $orderitem) : ?>
+                 <tr>
+                     <td>
+                        <img src="<?php echo $this->escapeHtml($orderitem->image)?>" style="width: 64px" />
+                     </td>
+                     <td style="vertical-align: middle;" data-title="Quantity"><?php echo $this->escapeHtml($orderitem->qty);?></td>
+                     <td style="vertical-align: middle;" data-title="Name"><?php echo $this->escapeHtml($orderitem->name);?></td>
+                     <td style="vertical-align: middle;" data-title="Price">$ <?php echo $this->escapeHtml($orderitem->price);?></td>
+                     <td style="vertical-align: middle;" data-title="Note"><?php echo $this->escapeHtml($orderitem->note);?></td>
+                 </tr>
+                 <?php
+                    $subtotal =  $subtotal + ($orderitem->price * $orderitem->qty);
+                    endforeach; 
+                    
+                    $tax = $subtotal * $taxrate;
+                    $total = $subtotal + $tax;
+                 ?>               
+                </table>
+                <hr/>
+                <table style="width: 100%">
+                    <tr>
+                        <td>Sub Total</td>
+                        <td style="text-align: right">$ <?php echo round($subtotal,2); ?></td>
+                    </tr>   
+                    <tr>
+                        <td>Tax</td>
+                        <td style="text-align: right">$ <?php echo round($tax,2); ?></td>
+                    </tr>  
+                    <tr>
+                        <td>Total</td>
+                        <td style="text-align: right">$ <?php echo round($total,2); ?></td>
+                    </tr>                                               
+                </table>   
+                
+                <div  style="margin-top: 20px; text-align: center">
+                <?php echo $this->escapeHtml($order->orderdate);?>
+                </div>
+                
+                <hr/>
+                
+                Became a member of manpuku.
+                It is easy. just use you smart phone and install baapchef.
+                or ask front desk. 
+                
+            </div>
+        </div>
+    </div>
+</div>    

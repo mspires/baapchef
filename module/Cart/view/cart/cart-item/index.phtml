@@ -1,0 +1,38 @@
+<?php
+
+$title = 'Cart Items';
+$this->headTitle($title);
+?>
+
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+ <p>
+     <a href="<?php echo $this->url('cartitem', array('action'=>'add'));?>">Add new CartItem</a>
+ </p>
+
+ <table class="table">
+ <tr>
+     <th>Cart Item ID</th>
+     <th>Cart ID</th>
+     <th>Dish ID</th>
+     <th>Quantity</th>
+     <th>Note</th>
+     <th>Create Date</th>
+     <th>&nbsp;</th>
+ </tr>
+ <?php foreach ($cartitems as $cartitem) : ?>
+ <tr>
+ <td><?php echo $this->escapeHtml($cartitem->id);?></td>
+     <td><?php echo $this->escapeHtml($cartitem->cartid);?></td>
+     <td><?php echo $this->escapeHtml($cartitem->dishid);?></td>
+     <td><?php echo $this->escapeHtml($cartitem->qty);?></td>
+     <td><?php echo $this->escapeHtml($cartitem->note);?></td>
+     <td><?php echo $this->escapeHtml($cartitem->createdate);?></td>
+     <td>
+         <a href="<?php echo $this->url('cartitem',
+             array('action'=>'edit', 'id' => $cartitem->id));?>">Edit</a>
+         <a href="<?php echo $this->url('cartitem',
+             array('action'=>'delete', 'id' => $cartitem->id));?>">Delete</a>
+     </td>
+ </tr>
+ <?php endforeach; ?>
+  </table>

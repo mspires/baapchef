@@ -1,0 +1,18 @@
+<div class="panel panel-primary">
+    <div class="panel-heading clearfix">
+        <h3 class="panel-title pull-left" style="padding-top: 7.5px;">Dishes</h3>
+    </div>
+    <div class="panel-body">
+
+       	<div id="menubox" style="height: 160px" ng-repeat="dish in dishes">
+         	<div class="dish pull-left btn btn-default" id="{{dish.id}}?>">
+                 <div style="width:176px; height: 90px">
+                    <img src="{{dish.imagepath}}" style="width:100%; height:100%" />
+                 </div>
+                 <div class="name" style="width:176px; word-wrap: break-word;">{{dish.name}}</div>
+                 $ <span class="price">{{dish.price}}</span>
+        	</div>
+    	</div>    	
+
+    </div>
+</div>

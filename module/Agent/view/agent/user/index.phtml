@@ -1,0 +1,60 @@
+<?php
+
+$title = 'Users';
+$this->headTitle($title);
+?>
+
+<div class="row">
+
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading clearfix">
+                <h3 class="panel-title pull-left" style="padding-top: 7.5px;"><?php echo $this->translate($title) ?></h3>
+                <div class="btn-group pull-right">
+                    <a class="btn btn-default btn-sm" href="<?php echo $this->url('aguser', array('action'=>'add'));?>">Add</a>
+                </div>
+            </div>
+            <div class="panel-body">
+            
+
+
+                 <table class="table">
+                 <thead>
+                 <tr>
+                     <th style="width: 50px">&nbsp;</th>
+                     <th>Name</th>
+                     <th>Email</th>
+                     <th>Phone</th>
+                     <th>Role</th>
+                     <th>Status</th>
+                     <th>&nbsp;</th>
+                 </tr>
+                 </thead>
+                 <tbody>
+                 <?php foreach ($users as $user) : ?>
+                 <tr>
+                     <td data-title="">
+                        <img src="<?php echo $this->escapeHtml($user->image)?>" width=32 />
+                     </td>
+                     <td style="vertical-align: middle;" data-title="Name">    
+                        <?php echo $this->escapeHtml($user->name);?>
+                     </td>
+                     <td style="vertical-align: middle;" data-title="Email"><?php echo $this->escapeHtml($user->email);?></td>
+                     <td style="vertical-align: middle;" data-title="Phone"><?php echo $this->escapeHtml($user->phone);?></td>
+                     <td style="vertical-align: middle;" data-title="Role"><?php echo $this->escapeHtml($user->role_name);?></td>
+                     <td style="vertical-align: middle;" data-title="Status"><?php echo $this->escapeHtml($user->status);?></td>
+                     <td style="vertical-align: middle;" data-title="">
+                         <a class="btn btn-default btn-sm" href="<?php echo $this->url('aguser',
+                             array('action'=>'edit', 'id' => $user->id));?>">Edit</a>
+                         <a class="btn btn-default btn-sm" href="<?php echo $this->url('aguser',
+                             array('action'=>'delete', 'id' => $user->id));?>">Delete</a>
+                     </td>
+                 </tr>
+                 <?php endforeach; ?>
+                 </tbody>
+                 </table>
+
+            </div>
+        </div>
+    </div>
+</div>                                         

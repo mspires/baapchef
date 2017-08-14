@@ -1,0 +1,30 @@
+<div ng-controller="CartCtrl">
+
+	<div class="row">
+	
+	    <div class="col-md-12">
+	        <div class="panel panel-default">
+	            <div class="panel-body">
+	
+	
+	                <table class="table">
+	                 <tbody>                  
+	                 <tr ng-repeat="cart in carts">
+	                    <td data-title="">
+	                        <img src="{{cart.rimage}}" style="width: 200px" />
+	                    </td>     
+	                     <td style="vertical-align: middle;" data-title="Order Date">{{cart.createdate}}</td>
+	                     <td style="vertical-align: middle;" data-title="">
+	                         <a class="btn btn-default btn-sm" ng-click="viewCartItem()">View</a>
+	                         <a class="btn btn-default btn-sm" ng-click="cancelCart()">Cancel</a>
+	                     </td>
+	                 </tr>
+	                 </tbody>
+	                 </table>
+	
+	            </div>
+	        </div>
+	    </div>
+	</div>
+
+</div>

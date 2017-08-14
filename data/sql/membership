@@ -1,0 +1,12 @@
+CREATE TABLE membership (
+	id int(11) NOT NULL auto_increment,
+	rid int(11) NOT NULL DEFAULT 0,
+	cid int(11) NOT NULL DEFAULT 0,
+	level int(1) NOT NULL DEFAULT 0,  
+	status int(1) NOT NULL DEFAULT 0,  
+	note varchar(500) NOT NULL,
+	PRIMARY KEY (id)
+);
+
+INSERT INTO membership (rid, cid, level, status)
+     VALUES  (1,1,1,1);

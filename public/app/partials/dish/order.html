@@ -1,0 +1,32 @@
+<div ng-controller="TakeoutOrderCtrl">
+
+	<div class="row">
+	
+	    <div class="col-md-12">
+	        <div class="panel panel-default">
+	            <div class="panel-body">
+	
+	
+	                <table class="table">
+	                 <tbody>                  
+	                 <tr ng-repeat="order in orders">
+	                    <td data-title="">
+	                        <img src="{{order.rimage}}" style="width: 200px" />
+	                    </td>     
+	                     <td style="vertical-align: middle;" data-title="Order Date">{{order.orderdate}}</td>
+	                     <td style="vertical-align: middle;" data-title="Schedule Date">{{order.scheduledate}}</td>
+	                     <td style="vertical-align: middle;" data-title="Takeout Date">{{order.takeoutdate}}</td>
+	                     <td style="vertical-align: middle;" data-title="">
+	                         <a class="btn btn-default btn-sm" ng-click="viewOrderItem()">View</a>
+	                         <a class="btn btn-default btn-sm" ng-click="cancelOrder()">Cancel</a>
+	                     </td>
+	                 </tr>
+	                 </tbody>
+	                 </table>
+	
+	            </div>
+	        </div>
+	    </div>
+	</div>
+
+</div>

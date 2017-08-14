@@ -1,0 +1,21 @@
+DROP TABLE IF EXISTS `state`;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+CREATE TABLE `state` (
+  `id` bigint(20) NOT NULL auto_increment,
+  `countrycode` varchar(3) collate utf8_bin NOT NULL default '',
+  `statecode` varchar(20) collate utf8_bin NOT NULL default '',
+  `statename` varchar(50) collate utf8_bin NOT NULL default '',
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Dumping data for table `cc_state`
+--
+
+LOCK TABLES `state` WRITE;
+/*!40000 ALTER TABLE `state` DISABLE KEYS */;
+INSERT INTO `state` VALUES (1,'USA','AL','Alabama'),(2,'USA','AK','Alaska'),(3,'USA','AZ','Arizona'),(4,'USA','AR','Arkansas'),(5,'USA','CA','California'),(6,'USA','CO','Colorado'),(7,'USA','CT','Connecticut'),(8,'USA','DE','Delware'),(9,'USA','DC','District of Columbia'),(10,'USA','FL','Florida'),(11,'USA','GA','Georgia'),(12,'USA','HI','Hawaii'),(13,'USA','ID','Idaho'),(14,'USA','IL','Illinois'),(15,'USA','IN','Indiana'),(16,'USA','IA','Iowa'),(17,'USA','KS','Kansas'),(18,'USA','KY','Kentucky'),(19,'USA','LA','Louisiana'),(20,'USA','ME','Maine'),(21,'USA','MD','Maryland'),(22,'USA','MA','Massachusetts'),(23,'USA','MI','Michigan'),(24,'USA','MN','Minnesota'),(25,'USA','MS','Mississippi'),(26,'USA','MO','Missouri'),(27,'USA','MT','Montana'),(28,'USA','NE','Nebraska'),(29,'USA','NV','Nevada'),(30,'USA','NH','New Hampshire'),(31,'USA','NJ','New Jersey'),(32,'USA','NM','New Mexico'),(33,'USA','NY','New York'),(34,'USA','NC','North Carolina'),(35,'USA','ND','North Dakota'),(36,'USA','OH','Ohio'),(37,'USA','OK','Oklahoma'),(38,'USA','OR','Oregon'),(39,'USA','PA','Pennsylvania'),(40,'USA','PR','Puerto Rico'),(41,'USA','RI','Rhode Island'),(42,'USA','SC','South Carolina'),(43,'USA','SD','South Dakota'),(44,'USA','TN','Tennessee'),(45,'USA','TX','Texas'),(46,'USA','UT','Utah'),(47,'USA','VT','Vermont'),(48,'USA','VI','Virgin Islands'),(49,'USA','VA','Virginia'),(50,'USA','WA','Washington'),(51,'USA','WV','West Virginia'),(52,'USA','WI','Wisconsin'),(53,'USA','WY','Wyoming'),(54,'CAN','AB','Alberta'),(55,'CAN','BC','British Columbia'),(56,'CAN','MB','Manitoba'),(57,'CAN','ON','Ontario'),(58,'CAN','PQ','Quebec'),(59,'CAN','NB','New Brunswick'),(60,'CAN','NL','Newfoundland and Labrador'),(61,'CAN','NT','Northwest Territories'),(62,'CAN','NS','Nova Scotia'),(63,'CAN','NU','Nunavut'),(64,'CAN','PE','Prince Edward Island'),(65,'CAN','SK','Saskatchewan'),(66,'CAN','YT','Yukon');
+/*!40000 ALTER TABLE `state` ENABLE KEYS */;
+UNLOCK TABLES;

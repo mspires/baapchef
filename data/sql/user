@@ -1,0 +1,39 @@
+DROP TABLE users;
+CREATE TABLE `users` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `rid` int(10) NOT NULL,
+  `usertype` enum('Admin','Agent','Restaurant') NOT NULL DEFAULT 'Restaurant',
+  `name` varchar(100) NOT NULL,
+  `userid` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `phone` varchar(20) NOT NULL,
+  `password` varchar(20) NOT NULL,
+  `status` enum('Y','N') NOT NULL DEFAULT 'Y',
+  `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `modified_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+);
+
+DROP TABLE role;
+CREATE TABLE `role` (
+  `rid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `role_name` varchar(20) NOT NULL,
+  `status` enum('Y','N') NOT NULL DEFAULT 'Y', 
+  PRIMARY KEY (`rid`)
+);
+
+DROP TABLE user_role;
+CREATE TABLE `user_role` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) NOT NULL,
+  `role_id` int(10) NOT NULL,
+  PRIMARY KEY (`id`)
+);
+
+insert into users values (null,1,'Admin','Baap','Admin','admin@baap.com','4087727367','1234','Y',null,null);
+insert into user_role values (null,1,4);
+
+insert into role values (null,'member','Y');
+insert into role values (null,'staff','Y');
+insert into role values (null,'manager','Y');
+insert into role values (null,'admin','Y');

@@ -1,0 +1,12 @@
+DROP TABLE agentmap;
+CREATE TABLE agentmap (
+	id int(11) NOT NULL auto_increment,
+	agentid int(11) NOT NULL,
+	rid int(11) NOT NULL,
+	createdate DATETIME  NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	status enum('Y','N') NOT NULL DEFAULT 'Y',	
+	PRIMARY KEY (id)
+)COLLATE='utf8_general_ci' ENGINE=InnoDB;
+
+INSERT INTO agentmap (agentid, rid)
+     VALUES  (1,1);

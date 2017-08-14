@@ -1,0 +1,12 @@
+Drop Table customermap;
+CREATE TABLE customermap (
+	id int(11) NOT NULL auto_increment,
+	cid int(11) NOT NULL,
+	rid int(11) NOT NULL,
+	createdate DATETIME  NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	status enum('Y','N') NOT NULL DEFAULT 'Y',
+	PRIMARY KEY (id)
+);
+
+INSERT INTO customermap (cid, rid)
+     VALUES  (10000,10000);

@@ -1,0 +1,32 @@
+<?php
+
+$title = 'My dish groups';
+$this->headTitle($title);
+?>
+
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+ <p>
+     <a href="<?php echo $this->url('dishgroup', array('action'=>'add'));?>">Add new dishgroup</a>
+ </p>
+
+ <table class="table">
+ <tr>
+     <th>Name</th>
+     <th>Description</th>
+     <th>&nbsp;</th>
+ </tr>
+ <?php foreach ($dishgroups as $dishgroup) : ?>
+ <tr>
+     <td style="width: 200px">
+        <div style="background-color: #1265fc; color: #fff; text-align: center; with: 200px; padding: 5px 0"><?php echo $this->escapeHtml($dishgroup->name);?></div>
+     </td>
+     <td style="vertical-align: middle;" ><?php echo $this->escapeHtml($dishgroup->note);?></td>
+     <td style="vertical-align: middle;" >
+         <a href="<?php echo $this->url('dishgroup',
+             array('action'=>'edit', 'id' => $dishgroup->id));?>">Edit</a>
+         <a href="<?php echo $this->url('dishgroup',
+             array('action'=>'delete', 'id' => $dishgroup->id));?>">Delete</a>
+     </td>
+ </tr>
+ <?php endforeach; ?>
+ </table>

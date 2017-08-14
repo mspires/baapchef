@@ -1,0 +1,51 @@
+<div ng-controller="MonitorCtrl">
+
+	<div class="row">
+	    <div class="col-md-12">
+	        <div class="panel panel-success">
+	            <div class="panel-heading clearfix">
+	                <h3 class="panel-title pull-left" style="padding-top: 7.5px;">
+	                    <span class="glyphicon glyphicon-th" id="popmenu"></span>&nbsp;Menu
+	                </h3>
+	                <div class="btn-group pull-right">
+	                    <a class="btn btn-default btn" href="/restaurant/home">Home</a>
+	                    <a class="btn btn-default btn" href="/restaurant/auth/pinout">PIN Out</a>
+	                </div>
+	            </div>
+	        </div>
+	    </div>                   
+	</div>
+
+<div class="col-md-6" ng-repeat="order in orders">
+
+     <div class="panel panel-default">
+			<div class="panel-heading clearfix">
+             	<h3 class="panel-title pull-left" style="padding-top: 7.5px;">
+                   &nbsp;Order {{order.id}}  {{order.cname}}
+               </h3>
+               <div class="pull-right">
+               	<a class="btn btn-default btn" ng-click="cancelOrder(order.id)">Out</a>
+               </div>
+           </div>
+           <div class="panel-body">
+			
+					
+				<div class="col-md-12"> 
+					<table>
+			    		<tr>
+	                   	     <td>{{order.ordertype}}</td>
+	                   	     <td>{{order.orderdate}}</td>
+	                   	     <td>{{order.rstate}}</td>
+	                   	</tr>
+	                   	<tr ng-repeat="orderitem in order.orderitems">
+	                   	     <td>{{orderitem.name}}</td>
+	                   	     <td style="text-align: right"> {{orderitem.qty}}</td>
+	                   	     <td>{{orderitem.note}}</td>		                     		
+	                   	</tr>
+	              	</table>
+              	</div>
+    	</div>
+	</div>
+	
+</div>	                 
+ 

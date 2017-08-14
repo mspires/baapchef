@@ -1,0 +1,54 @@
+<?php
+
+$title = 'Credit Card';
+$this->headTitle($title);
+?>
+
+<div class="row">
+
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading clearfix">
+                <h3 class="panel-title pull-left" style="padding-top: 7.5px;"><?php echo $this->translate($title) ?></h3>
+                <div class="btn-group pull-right">
+                    <a class="btn btn-default btn-sm" href="<?php echo $this->url('restcredit', array('action'=>'add'));?>">Add</a>
+                </div>
+            </div>
+            <div class="panel-body">
+           
+                 <table class="table">
+                 <thead>
+                 <tr>
+                     <th  style="width: 50px">&nbsp;</th>
+                     <th>Number</th>
+                     <th>Name</th>
+                     <th>Expired</th>
+                     <th>&nbsp;</th>
+                 </tr>
+                 </thead>
+                 <tbody>
+                 
+                 <?php foreach ($creditcards as $card) : ?>
+                 <tr>
+                      <td data-title="">
+                        <img src="<?php echo $this->escapeHtml($card->image)?>" width=32 />
+                     </td>
+                     <td style="vertical-align: middle;"  data-title="Number"><?php echo $this->escapeHtml($card->number);?></td>
+                     <td style="vertical-align: middle;"  data-title="Name on Card"><?php echo $this->escapeHtml($card->name);?></td>
+                     <td style="vertical-align: middle;"  data-title="Expire Date"><?php echo $this->escapeHtml($card->month);?> - <?php echo $this->escapeHtml($card->year);?></td>
+                
+                     <td style="vertical-align: middle;" >
+                         <a class="btn btn-default btn-sm" href="<?php echo $this->url('restcredit',
+                             array('action'=>'edit', 'id' => $card->id));?>">Edit</a>
+                         <a class="btn btn-default btn-sm" href="<?php echo $this->url('restcredit',
+                             array('action'=>'delete', 'id' => $card->id));?>">Delete</a>
+                     </td>
+                 </tr>
+                 <?php endforeach; ?>
+                 </tbody>
+                  </table>
+
+           </div>
+        </div>
+    </div>
+</div>                    

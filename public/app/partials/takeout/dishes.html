@@ -1,0 +1,27 @@
+<div ng-controller="DishCtrl">
+
+	<div class="row">
+	    <div class="col-md-4">
+	        <div class="panel panel-default">
+	            <div class="panel-body">
+	            
+	                 <table class="table">
+		                 <tbody>
+			                 <tr ng-repeat="dish in dishes">
+			        			                     <td  style="vertical-align: middle;" data-title="Dish">{{dish.name}}</td>
+			                     <td style="vertical-align: middle;" data-title="Price">$ {{dish.price}}</td>
+			                     <td style="vertical-align: middle;" data-title="Note">{{dish.note}}</td>
+			                     <td style="vertical-align: middle;" data-title="">
+			                         <a class="btn btn-default btn-sm" ng-click="makeOrder()">
+			                         	<b class="icon-plus-sign"></b>&nbsp;Order</a>
+			                     </td>
+			                 </tr>
+		                 </tbody>
+	                 </table>
+	                 
+	            </div>
+	        </div>
+	    </div>
+	</div>      
+
+</div>

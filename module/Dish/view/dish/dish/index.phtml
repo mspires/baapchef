@@ -1,0 +1,35 @@
+<?php
+
+$title = 'My Groups';
+$this->headTitle($title);
+?>
+
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+ <p>
+     <a href="<?php echo $this->url('dish', array('action'=>'add'));?>">Add new dish</a>
+ </p>
+
+ <table class="table">
+ <tr>
+     <th>Name</th>
+     <th>Description</th>
+     <th>&nbsp;</th>
+ </tr>
+ <?php foreach ($dishes as $dish) : ?>
+ <tr>
+     <td style="width: 200px">
+        <img src="<?php echo $this->escapeHtml($dish->image)?>" />
+        <br/>
+        <div style="background-color: #1265fc; color: #fff; text-align: center; with: 200px; padding: 5px 0"><?php echo $this->escapeHtml($dish->name);?></div>
+     </td>
+     <td style="vertical-align: middle;" >$ <?php echo $this->escapeHtml($dish->price);?></td>
+     <td style="vertical-align: middle;" ><?php echo $this->escapeHtml($dish->note);?></td>
+     <td style="vertical-align: middle;" >
+         <a href="<?php echo $this->url('dish',
+             array('action'=>'edit', 'id' => $dish->id));?>">Edit</a>
+         <a href="<?php echo $this->url('dish',
+             array('action'=>'delete', 'id' => $dish->id));?>">Delete</a>
+     </td>
+ </tr>
+ <?php endforeach; ?>
+ </table>

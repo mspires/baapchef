@@ -1,0 +1,16 @@
+DROP TABLE takeoutdish;
+CREATE TABLE takeoutdish (
+	id int(11) NOT NULL auto_increment,
+	rid int(11)NOT NULL DEFAULT 0,
+	name varchar(100) NOT NULL,
+	price DECIMAL(4,2) NOT NULL DEFAULT 0,
+	cookbox int(1) NOT NULL DEFAULT 0,
+	note varchar(500) NOT NULL,
+	PRIMARY KEY (id)
+);
+ 
+ 
+  INSERT INTO takeoutdish (rid, name,price,note) VALUES  (1,1,'roll', 6.49, 'roll...');
+  INSERT INTO takeoutdish (rid, name,price,note) VALUES  (1,1,'roll1', 7.49, 'roll 1...');
+  INSERT INTO takeoutdish (rid, name,price,note) VALUES  (1,1,'roll2', 6.49, 'roll 2...');
+  INSERT INTO takeoutdish (rid, name,price,note) VALUES  (1,1,'roll3', 8.49, 'roll 3...');

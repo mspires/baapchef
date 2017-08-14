@@ -1,0 +1,82 @@
+<?php
+$title = 'Edit Address';
+$this->headTitle($title);
+?>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+	$('#cancelbutton').click(function(){
+		parent.history.back();
+		return false;
+	});
+});
+
+
+
+</script>
+
+<div class="row">
+    <div class="col-sm-4">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><?php echo $this->escapeHtml($title); ?></h3>
+            </div>
+            <div class="panel-body">
+
+<?php
+$form = $this->form;
+$form->setAttribute('action', $this->url(
+    'agrestaddress',
+    array(
+        'action' => 'edit',
+        'id'     => $this->id,
+    )
+));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+echo $this->formHidden($form->get('id'));
+
+?>
+
+
+<div class="form-group">
+<?php echo $this->formRow($form->get('address1'));?>
+</div>
+
+<div class="form-group">
+<?php echo $this->formRow($form->get('address2'));?>
+</div>
+
+<div class="form-group">
+<?php echo $this->formRow($form->get('city'));?>
+</div>
+
+<div class="form-group">
+<?php echo $this->formRow($form->get('state'));?>
+</div>
+
+<div class="form-group">
+<?php echo $this->formRow($form->get('zip'));?>
+</div>
+
+<div class="form-group">
+<?php echo $this->formRow($form->get('country'));?>
+</div>
+
+<div class="form-group">
+<?php echo $this->formSubmit($form->get('submit'));?>
+&nbsp;<?php echo $this->formElement($form->get('cancel'));?>
+
+</div>
+
+<?php
+echo $this->form()->closeTag();
+?>
+
+            </div>
+        </div>
+    </div>
+</div>

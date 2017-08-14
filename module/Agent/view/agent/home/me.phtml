@@ -1,0 +1,116 @@
+<?php
+$title = 'Home';
+$this->headTitle($title);
+?>
+
+<script type="text/javascript">
+<!--
+$(document).ready(function(){
+
+	$("#myModal").on('show.bs.modal', function(event){
+        var button = $(event.relatedTarget);
+        
+        var titleData = button.data('title');
+        $(this).find('.modal-title').text(titleData);
+
+        var contentData = button.data('content');
+        $(this).find('.modal-body').text(contentData);
+    });
+	
+});
+-->
+</script>
+
+
+<div class="jumbotron">
+    <div style="width: 100%; text-align: center; font-size: 16px">
+        <p> <img src="<?php echo $this->escapeHtml($agent->image)?>" width="200px" /> <p>
+        <p> <?php echo $agent->name ?> <p>
+        <p> <?php echo $agent->email ?> <p>
+        <p> <?php echo $agent->phone ?> <p>
+        <p>
+            <?php if($this->role == 'admin') { ?>
+            <a class="btn btn-default btn-sm" href="<?php echo $this->url('agprofile',array('action' => 'change'));?>">Change Profile</a>
+            <?php } ?>
+        </p>
+    
+ 
+    </div>        
+</div>
+
+<div class="row">
+
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><?php echo $this->translate('Takeout Dishes') ?></h3>
+            </div>
+            <div class="panel-body">
+
+                <p>
+                    <b>Want to takeout dish</b>
+                </p>
+                <p>
+                    Use our App now.  
+                </p>
+                <p>
+                <img src="../img/orderbyphone.png" width="200px" />
+                </p>
+                <p>
+                    <a class="btn btn-default btn-sm" href="<?php echo $this->url('agtakeoutdish');?>">Manage Takeout Dishes</a>
+                </p>                
+             </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><?php echo $this->translate('In restaurant Dishes') ?></h3>
+            </div>
+            <div class="panel-body">
+                <p>
+                    <b>Order your dish yourself.</b>
+                </p>
+                <p>
+                    Don't need to wait waiter 
+                </p>
+                <p>
+                    We can help you make an order with your phone.
+                </p>
+                <p>
+                <img src="../img/waiter.png" width="200px" />
+                </p>
+                <p>
+                    <a class="btn btn-default btn-sm" href="<?php echo $this->url('agdish');?>">Manage Menues</a>
+                </p>
+                
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><?php echo $this->translate('Membership') ?></h3>
+            </div>
+            <div class="panel-body">
+                <p>
+                    <b>Join your favorite restaurant memeber</b>
+                </p>
+                <p>
+                    If you go inside a restaurant that has partnership with us and you are not member of this restaurant yet, 
+                    you can get a notice for joining membership for this restaurant.
+                </p>
+                <p>
+                    and if you agree to join membership, you can get lots of benefit what this restaurant is providing.
+                </p>
+                <p>
+                    <a class="btn btn-default btn-sm" href="<?php echo $this->url('agrestaurant');?>">View your customers</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+</div>

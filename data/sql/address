@@ -1,0 +1,17 @@
+DROP table address;
+CREATE TABLE address (
+	id int(11) NOT NULL auto_increment,
+	type ENUM('customer', 'restaurant', 'agent'),
+	tid int(11) NOT NULL,
+	address1 varchar(100) NOT NULL,
+	address2 varchar(100),
+	city varchar(100) NOT NULL,
+	state varchar(100) NOT NULL,
+	zip varchar(10) NOT NULL,
+	country varchar(3) NOT NULL,
+	lat float NOT NULL,
+	lng float NOT NULL,
+	PRIMARY KEY (id)
+);
+
+ INSERT INTO address (type, tid,address1,address2,city, state, zip, country) VALUES  ('restaurant',1,'3038 Staples Ranch Dr', '', 'Pleasanton','CA','94588','US');

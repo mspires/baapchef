@@ -1,0 +1,62 @@
+<script type="text/javascript">
+
+$(document).ready(function(){
+	$('#cancelbutton').click(function(){
+		parent.history.back();
+		return false;
+	});
+});
+
+
+
+</script>
+
+<?php
+
+$title = 'Reservation List';
+$this->headTitle($title);
+?>
+
+<div class="row">
+
+     <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading clearfix">
+                <h3 class="panel-title pull-left" style="padding-top: 7.5px;"><?php echo $this->translate($title) ?></h3>
+                <div class="btn-group pull-right">
+                    <a class="btn btn-default btn-sm" href="<?php echo $this->url('reservation', array('action'=>'add'));?>">Add New Reservation</a>
+                </div>
+            </div>
+            <div class="panel-body">
+            
+                 <table class="table">
+                 <thead>
+                     <tr>
+                         <th>Name</th>
+                         <th>Status</th>
+                         <th>Note</th>
+                         <th>&nbsp;</th>
+                     </tr>
+                </thead>
+                <tbody>            
+                     <?php foreach ($reserves as $reserve) : ?>
+                     <tr>
+                         <td style="vertical-align: middle;" ><?php echo $this->escapeHtml($reserve->name);?></td>
+                         <td style="vertical-align: middle;" ><?php echo $this->escapeHtml($reserve->status);?></td>
+                         <td style="vertical-align: middle;" ><?php echo $this->escapeHtml($reserve->note);?></td>
+                         <td style="vertical-align: middle;" >
+                             <a href="<?php echo $this->url('reserve',
+                                 array('action'=>'edit', 'id' => $reserve->id));?>">Edit</a>
+                             <a href="<?php echo $this->url('dish',
+                                 array('action'=>'table', 'id' => $reserve->id));?>">Delete</a>
+                         </td>
+                     </tr>
+                     <?php endforeach; ?>
+                </tbody>        
+                </table>
+                
+            </div>
+        </div>      
+    </div>   
+</div>          
+

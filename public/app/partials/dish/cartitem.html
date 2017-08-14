@@ -1,0 +1,36 @@
+<div ng-controller="CartItemCtrl">
+	<div class="row">
+	
+	    <div class="col-md-4">
+	        <div class="panel panel-default">
+	            <div class="panel-heading clearfix">
+	                <h3 class="panel-title pull-left" style="padding-top: 7.5px;">Cart</h3>
+	                <div class="btn-group pull-right">
+	                    <a class="btn btn-default btn-sm" ng-click="makeOrder()">Order Now</a>
+	                </div>
+	            </div>
+	            <div class="panel-body">
+	            
+	            	<table class="table">
+		                 <tbody>                 
+			                 <tr ng-repeat="cartitem in cartitems">
+			                     <td>
+			                        <img src="{{cartitem.image}}" style="width: 200px"/>
+			                     </td>
+			                     <td style="vertical-align: middle;" data-title="Name">{{cartitem.name}}</td>
+			                     <td style="vertical-align: middle;" data-title="Quantity">{{cartitem.qty}}</td>
+			                     <td style="vertical-align: middle;" data-title="Note">{{cartitem.note}}</td>
+			                     <td style="vertical-align: middle;">
+			                         <a class="btn btn-default btn-sm" ng-click="makeOrder()">Edit</a>
+			                         <a class="btn btn-default btn-sm" ng-click="makeOrder()">Delete</a>
+			                     </td>
+			                 </tr>
+		                 </tbody>
+	                 </table>
+	
+	            </div>
+	        </div>
+	    </div>
+	</div>
+
+</div>

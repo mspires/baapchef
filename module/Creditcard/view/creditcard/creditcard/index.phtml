@@ -1,0 +1,33 @@
+<?php
+
+$title = 'Credit Card';
+$this->headTitle($title);
+?>
+
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+ <p>
+     <a href="<?php echo $this->url('creditcard', array('action'=>'add'));?>">Add new Credit Card</a>
+ </p>
+
+ <table class="table">
+ <tr>
+     <th>Number</th>
+     <th>Name</th>
+     <th>Expired</th>
+     <th>&nbsp;</th>
+ </tr>
+ <?php foreach ($creditcards as $card) : ?>
+ <tr>
+     <td><?php echo $this->escapeHtml($card->number);?></td>
+     <td><?php echo $this->escapeHtml($card->name);?></td>
+     <td><?php echo $this->escapeHtml($card->month);?> - <?php echo $this->escapeHtml($card->year);?></td>
+
+     <td>
+         <a href="<?php echo $this->url('creditcard',
+             array('action'=>'edit', 'id' => $card->id));?>">Edit</a>
+         <a href="<?php echo $this->url('creditcard',
+             array('action'=>'delete', 'id' => $card->id));?>">Delete</a>
+     </td>
+ </tr>
+ <?php endforeach; ?>
+  </table>

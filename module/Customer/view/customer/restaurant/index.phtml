@@ -1,0 +1,46 @@
+<?php
+$title = 'Restaurants';
+$this->headTitle($title);
+?>
+
+<div class="row">
+
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><?php echo $this->translate($title) ?></h3>
+            </div>
+            <div class="panel-body">
+
+                 <table class="table">
+                 <thead>
+                 <tr>
+                     <th>&nbsp;</th>   
+                     <th>Name</th>
+                     <th>Phone</th>
+                     <th>&nbsp;</th>
+                 </tr>
+                 </thead>
+                 <tbody>
+                 <?php foreach ($restaurants as $restaurant) : ?>
+                 <tr>
+                     <td>
+                        <img src="<?php echo $this->escapeHtml($restaurant->image)?>" width=200 />
+                     </td>
+                     <td style="vertical-align: middle;" data-title="Name"><?php echo $this->escapeHtml($restaurant->name);?></td>
+                     <td style="vertical-align: middle;" data-title="Phone"><?php echo $this->escapeHtml($restaurant->phone);?></td>
+                     <td style="vertical-align: middle;" data-title="">
+                         <a  class="btn btn-default btn-sm" href="<?php echo $this->url('myrestaurant',
+                             array('action'=>'info', 'id' => $restaurant->id));?>">Info</a>
+                         <a  class="btn btn-default btn-sm" href="<?php echo $this->url('mymembership',
+                             array('action'=>'add', 'id' => $restaurant->id));?>">MemberShip</a>
+                     </td>     
+                 </tr>
+                 <?php endforeach; ?>
+                 </tbody>
+                 </table>
+                 
+            </div>
+        </div>
+    </div>
+</div>                   

@@ -1,0 +1,55 @@
+<?php
+
+$title = 'Addresses';
+$this->headTitle($title);
+?>
+
+<div class="row">
+
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading clearfix">
+                <h3 class="panel-title pull-left" style="padding-top: 7.5px;"><?php echo $this->translate($title) ?></h3>
+                <div class="btn-group pull-right">
+                    <a class="btn btn-default btn-sm" href="<?php echo $this->url('adminrestaddress', array('action'=>'add'));?>">Add</a>
+                </div>
+            </div>
+            <div class="panel-body">
+            
+                 <table class="table">
+                 <thead>
+                 <tr>
+                     <th>Address1</th>
+                     <th>Address2</th>
+                     <th>City</th>
+                     <th>State</th>
+                     <th>ZipCode</th>
+                     <th>Country</th>
+                     <th>&nbsp;</th>
+                 </tr>
+                 </thead>
+                 <tbody>
+                 <?php foreach ($addresses as $address) : ?>
+                 <tr>
+                     <td data-title="Address1"><?php echo $this->escapeHtml($address->address1);?></td>
+                     <td data-title="Address2"><?php echo $this->escapeHtml($address->address2);?></td>
+                     <td data-title="City"><?php echo $this->escapeHtml($address->city);?></td>
+                     <td data-title="State"><?php echo $this->escapeHtml($address->state);?></td>
+                     <td data-title="ZipCode"><?php echo $this->escapeHtml($address->zip);?></td>
+                     <td data-title="Country"><?php echo $this->escapeHtml($address->country);?></td>
+                     <td>
+                         <a href="<?php echo $this->url('adminrestaddress',
+                             array('action'=>'edit', 'id' => $address->id));?>">Edit</a>
+                         <a href="<?php echo $this->url('adminrestaddress',
+                             array('action'=>'delete', 'id' => $address->id));?>">Delete</a>
+                     </td>
+                 </tr>
+                 <?php endforeach; ?>
+                 </tbody>
+                 </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+                                                      

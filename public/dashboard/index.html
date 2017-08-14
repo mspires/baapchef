@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en" ng-app="myApp">
+<head>
+  <meta charset="UTF-8">
+  
+	<title>BaapChef APP</title>
+	<link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<link href="lib/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" media="screen">
+
+	<script type="text/javascript" src="lib/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="lib/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="lib/angular/angular.js"></script> 
+	<script type="text/javascript" src="lib/angular/angular-route.js"></script> 
+	<script type="text/javascript" src="lib/angular/angular-animate.js"></script> 
+	<script type="text/javascript" src="lib/bootstrap/js/ui-bootstrap-0.14.3.js"></script>
+	<script type="text/javascript" src="js/app.js"></script>
+    
+    
+<style>
+  .typeahead-demo .custom-popup-wrapper {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    background-color: #f9f9f9;
+  }
+
+  .typeahead-demo .custom-popup-wrapper > .message {
+    padding: 10px 20px;
+    border-bottom: 1px solid #ddd;
+    color: #868686;
+  }
+
+  .typeahead-demo .custom-popup-wrapper > .dropdown-menu {
+    position: static;
+    float: none;
+    display: block;
+    min-width: 160px;
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+  }
+</style>
+
+</head>
+
+<script type="text/ng-template" id="group-template.html">
+    <div class="panel {{panelClass || 'panel-default'}}">
+      <div class="panel-heading">
+        <h4 class="panel-title" style="color:#fa39c3">
+          <a href tabindex="0" class="accordion-toggle" ng-click="toggleOpen()" uib-accordion-transclude="heading"><span
+            ng-class="{'text-muted': isDisabled}">{{heading}}</span></a>
+        </h4>
+      </div>
+      <div class="panel-collapse collapse" uib-collapse="!isOpen">
+        <div class="panel-body" style="text-align: right" ng-transclude></div>
+      </div>
+    </div>
+</script>
+
+
+<body ng-controller="DashboardCtrl">
+
+	<div class="container"> 
+
+	<div class="row">
+	    <div class="col-md-12">
+	        <div class="panel panel-success">
+	            <div class="panel-heading clearfix">
+	                <h3 class="panel-title pull-left" style="padding-top: 7.5px;">
+	                    <span class="glyphicon glyphicon-th" ng-click="groupBoxflag = false"></span>&nbsp;
+	                    {{restaurant.name}} : Serving for Customer {{selectedcustomer.name}}
+	                </h3>
+	                <div class="btn-group pull-right">
+	                	<a class="btn btn-default btn" ng-click="openDG()">Dish Group</a>
+	                	<a class="btn btn-default btn" ng-click="openCustomer()">Customer</a>
+	                    <a class="btn btn-default btn" ng-click="openOrder()">Order List</a>
+	                    <a class="btn btn-default btn" href="#monitor">Monitor</a>
+	                    <a class="btn btn-default btn" ng-click="openPIN()">Exit</a>
+	                </div>
+	            </div>
+	        </div>
+	    </div>                   
+	</div>
+
+		  <div style="height: 305px">
+		    <uib-carousel interval="myInterval" no-wrap="noWrapSlides">
+		      <uib-slide ng-repeat="slide in slides" active="slide.active">
+		        <img ng-src="{{slide.image}}" style="margin:auto;">
+		        <div class="carousel-caption">
+		          <h4>Slide {{$index}}</h4>
+		          <p>{{slide.text}}</p>
+		        </div>
+		      </uib-slide>
+		    </uib-carousel>
+		  </div>
+
+
+		<div class="row">
+			<div class="col-md-3">
+	
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">Waiting Form</h3>
+					</div>
+					<div class="panel-body">
+	
+						<uib-accordion close-others="true">
+					
+							  <uib-accordion-group heading="Static Header, initially expanded">
+							    This content is straight in the template.
+							  </uib-accordion-group>
+							  <uib-accordion-group heading="{{group.title}}" ng-repeat="group in groups">
+							    {{group.content}}
+							  </uib-accordion-group>
+							  
+							  <uib-accordion-group heading="Dynamic Body Content">
+							    <p>The body of the uib-accordion group grows to fit the contents</p>
+							    <button type="button" class="btn btn-default btn-sm" ng-click="addItem()">Add Item</button>
+							    <div ng-repeat="item in items">{{item}}</div>
+							  </uib-accordion-group>	
+						
+							  <uib-accordion-group heading="Custom template" template-url="group-template.html">
+							    Hello
+							  </uib-accordion-group>
+							  	
+							<uib-accordion-group heading="Delete account" panel-class="panel-danger">
+							  <p>Please, to delete your account, click the button below</p>
+							  <button class="btn btn-danger">Delete</button>
+							</uib-accordion-group>		
+						
+							<uib-accordion-group>
+							  <uib-accordion-heading>
+							    I can have markup, too! <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+							  </uib-accordion-heading>
+							  This is just some content to illustrate fancy headings.
+							</uib-accordion-group>
+							  	
+						</uib-accordion>
+	
+					</div>
+				</div>
+			</div>		
+		
+			<div class="col-md-9">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">Waiting Form</h3>
+					</div>
+					<div class="panel-body">
+					
+					    <pre class="alert alert-info">{{dt | date:'fullDate' }} {{mytime | date:'shortTime' }}<br/>{{asyncSelected | json}}</pre>
+					
+					    <div class="row">
+					        <div class="col-md-6">
+					            <p class="input-group" style="padding-top: 34px">
+					              <input type="text" class="form-control" 
+					              			uib-datepicker-popup="{{format}}" 
+					              			ng-model="dt" 
+					              			is-open="status.opened" 
+					              			min-date="minDate" 
+					              			max-date="maxDate" 
+					              			datepicker-options="dateOptions" 
+					              			date-disabled="disabled(date, mode)" 
+					              			ng-required="true" 
+					              			close-text="Close" />
+					              
+					              <span class="input-group-btn">
+					                <button type="button" class="btn btn-default" ng-click="open($event)"><i class="glyphicon glyphicon-calendar"></i></button>
+					              </span>
+					            </p>
+					        </div>
+					        
+							<div class="col-md-6">
+								<uib-timepicker ng-model="mytime" ng-change="changed()" 
+												hour-step="1" 
+												minute-step="30" 
+												show-meridian="true"></uib-timepicker>
+							</div>					        
+					    </div>
+
+					    <div class="row">
+					        <div class="col-md-9">
+							    <input type="text" ng-model="asyncSelected" placeholder="Address" 
+											    	uib-typeahead="address for address in getLocation($viewValue)" 
+											    	typeahead-loading="loadingLocations" 
+											    	typeahead-no-results="noResults" 
+											    	class="form-control">
+							    <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
+							    <div ng-show="noResults">
+							      <i class="glyphicon glyphicon-remove"></i> No Results Found
+							    </div>		
+				    		</div>
+				    	</div>							    
+					</div>
+				</div>				
+			</div>
+		</div>
+
+	</div>					
+</body>
+</html>

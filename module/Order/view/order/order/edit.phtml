@@ -1,0 +1,34 @@
+<?php
+$title = 'Edit Order';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+
+<style>
+<!--
+form label, form label span {
+ display: block;
+}
+-->
+</style>
+
+<?php
+$form = $this->form;
+$form->setAttribute('action', $this->url(
+    'order',
+    array(
+        'action' => 'edit',
+        'id'     => $this->id,
+    )
+));
+$form->prepare();
+
+echo $this->form()->openTag($form);
+echo $this->formHidden($form->get('id'));
+echo $this->formRow($form->get('rid'));
+echo $this->formRow($form->get('cid'));
+echo $this->formRow($form->get('dishid'));
+echo $this->formRow($form->get('scheduledate'));
+echo $this->formSubmit($form->get('submit'));
+echo $this->form()->closeTag();
+?>

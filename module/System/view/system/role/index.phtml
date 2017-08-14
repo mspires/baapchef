@@ -1,0 +1,50 @@
+<?php
+
+$title = 'Roles';
+$this->headTitle($title);
+?>
+
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+
+ <ul>
+    <li>
+     <a href="/system/role">Role</a>
+    </li>
+    
+    <li>
+     <a href="/system/resource">Resource</a>
+    </li>
+    
+    <li>
+     <a href="/system/permission">Permission</a>
+    </li>
+</ul>
+ 
+
+<table class="table">
+ <tr>
+     <th>ID</th>
+     <th>Name</th>
+     <th>Permission Name</th>
+     <th>Resource Name</th>
+     <th>Status</th>
+     <th>&nbsp;</th>
+ </tr>
+ 
+ <?php foreach ($roles as $role) : ?>
+ <tr>
+ <td><?php echo $this->escapeHtml($role->rid);?></td>
+     <td><?php echo $this->escapeHtml($role->role_name);?></td>
+     <td><?php echo $this->escapeHtml($role->permission_name);?></td>
+     <td><?php echo $this->escapeHtml($role->resource_name);?></td>
+     <td><?php echo $this->escapeHtml($role->status);?></td>
+     <td>
+         <a href="<?php echo $this->url('system',
+             array('action'=>'edit', 'id' => $role->rid));?>">Edit</a>
+         <a href="<?php echo $this->url('system',
+             array('action'=>'delete', 'id' => $role->rid));?>">Delete</a>
+     </td>
+ </tr>
+ <?php endforeach; ?>
+  
+</table>

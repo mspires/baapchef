@@ -1,0 +1,34 @@
+<?php
+
+$title = 'Carts';
+$this->headTitle($title);
+?>
+
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+ <p>
+     <a href="<?php echo $this->url('cart', array('action'=>'add'));?>">Add new Cart</a>
+ </p>
+
+ <table class="table">
+ <tr>
+     <th>Cart ID</th>
+     <th>Restaurant</th>
+     <th>Customer</th>
+     <th>Create Date</th>
+     <th>&nbsp;</th>
+ </tr>
+ <?php foreach ($carts as $cart) : ?>
+ <tr>
+ <td><?php echo $this->escapeHtml($cart->id);?></td>
+     <td><?php echo $this->escapeHtml($cart->rid);?></td>
+     <td><?php echo $this->escapeHtml($cart->cid);?></td>
+     <td><?php echo $this->escapeHtml($cart->createdate);?></td>
+     <td>
+         <a href="<?php echo $this->url('cart',
+             array('action'=>'edit', 'id' => $cart->id));?>">Edit</a>
+         <a href="<?php echo $this->url('cart',
+             array('action'=>'delete', 'id' => $cart->id));?>">Delete</a>
+     </td>
+ </tr>
+ <?php endforeach; ?>
+  </table>

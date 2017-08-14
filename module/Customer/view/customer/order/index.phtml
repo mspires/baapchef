@@ -1,0 +1,50 @@
+<?php
+$title = 'Orders';
+$this->headTitle($title);
+?>
+
+
+<div class="row">
+
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><?php echo $this->translate($title) ?></h3>
+            </div>
+            <div class="panel-body">
+
+
+                <table class="table">
+                <thead>
+                 <tr>
+                     <th>Restaurant</th>
+                     <th>Order Date</th>
+                     <th>Schedule Date</th>
+                     <th>Take Out</th>
+                     <th>&nbsp;</th>
+                 </tr>
+                 </thead>
+                 <tbody>                  
+                 <?php foreach ($orders as $order) : ?>
+                 <tr>
+                    <td data-title="">
+                        <img src="<?php echo $this->escapeHtml($order->rimage)?>" style="width: 200px" />
+                    </td>     
+                     <td style="vertical-align: middle;" data-title="Order Date"><?php echo $this->escapeHtml($order->orderdate);?></td>
+                     <td style="vertical-align: middle;" data-title="Schedule Date"><?php echo $this->escapeHtml($order->scheduledate);?></td>
+                     <td style="vertical-align: middle;" data-title="Takeout Date"><?php echo $this->escapeHtml($order->takeoutdate);?></td>
+                     <td style="vertical-align: middle;" data-title="">
+                         <a class="btn btn-default btn-sm" href="<?php echo $this->url('myorderitem',
+                             array('action'=>'index', 'id' => $order->id));?>">View</a>
+                         <a class="btn btn-default btn-sm" href="<?php echo $this->url('myorder',
+                             array('action'=>'delete', 'id' => $order->id));?>">Cancel</a>
+                     </td>
+                 </tr>
+                 <?php endforeach; ?>
+                 </tbody>
+                 </table>
+
+            </div>
+        </div>
+    </div>
+</div>   

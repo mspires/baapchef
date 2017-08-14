@@ -1,0 +1,90 @@
+<div class="row">
+    <div class="col-sm-8">
+        <h2>The Challenge.</h2>
+
+        <p>
+        Dashboards promise to solve a host of business problems,
+        and they do as long as they're spotlighting the right numbers.
+		But sometimes the most important metrics are the hardest to measure,
+		and the complications don't stop there:
+		</p>
+		<ul>
+		<li>Integrating new data sources is time-intensive</li>
+		<li>Building and modifying visualizations can be overwhelming</li>
+		<li>Getting everyone access to the same data is a hassle</li>
+		</ul>
+			
+		<h2>The Domo Solution.</h2>
+
+		<p>
+		Domo is more than a dashboard it's a single platform to run your entire business.
+		What you need is a solution that brings people and information together.
+		A single place where decisions are made with confidence.
+		With Domo's business management platform, you can:
+		</p>
+		<ul>
+		<li>Connect: Instantly connect to 100s of data sources without any coding or IT</li>
+		<li>Prepare Transform data easily with simple drag and drop actions</li>
+		<li>Visualize: Create intuitive, dynamic visualizations in just minutes</li>
+		<li>Engage: Collaborate right where the data lives with Twitter-like functionality</li>
+		<li>Optimize: Give everyone not just data analysts the ability to make better decisions</li>
+		</ul>
+					
+    </div>
+
+	<div class="col-sm-4">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title"><?php echo $this->translate('Payment') ?></h3>
+            </div>
+            <div class="panel-body">
+    			<form role="form">
+				<div class="form-group">
+				<label for="cardnumber">Card Number:</label>
+				<input type="number" class="form-control" id="cardnumber" placeholder="Enter card number">
+				</div>
+				<div class="form-group">
+				<label for="name">Name on Card:</label>
+				<input type="text" class="form-control" id="name" placeholder="Enter name on card">
+				</div>
+				<div class="form-group">
+				<label for="expired">Expired Month/Year:</label>
+				<table style="width: 100%">
+					<tr><td>
+					<select class="form-control" id="month">
+					<option value="1">01</option>
+					<option value="2">02</option>
+					<option value="3">03</option>
+					<option value="4">04</option>
+					<option value="5">05</option>
+					<option value="6">06</option>
+					<option value="7">07</option>
+					<option value="8">08</option>
+					<option value="9">09</option>
+					<option value="10">10</option>
+					<option value="11">11</option>
+					<option value="12">12</option>
+					</select>
+					</td>
+					<td style="text-align: center"> / </td>
+					<td>
+					<select class="form-control" id="year">
+					<option value="2015">2015</option>
+					<option value="2016">2016</option>
+					<option value="2017">2017</option>
+					<option value="2018">2018</option>
+					</select>
+					</td>
+					</tr>
+				</table>
+				</div>
+				<div class="form-group">
+				<label for="security">Security Code:</label>
+				<input type="text" class="form-control" id="code" placeholder="Enter security code">
+				</div>
+				<button type="submit" class="btn btn-default">Submit</button>
+				</form>
+				</div>
+				</div>
+</div>
+</div>

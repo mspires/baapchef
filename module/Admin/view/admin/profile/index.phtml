@@ -1,0 +1,51 @@
+<?php
+$title = 'Profile';
+$this->headTitle($title);
+?>
+
+
+<div class="row">
+	<div class="col-md-4">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title"><?php echo $this->translate($title) ?></h3>
+			</div>
+			<div class="panel-body">
+<?php
+    $form = $this->signupForm;
+    $form->prepare();
+    echo $this->form()->openTag($form);
+?>
+                	<table>
+					<tr>
+						<td><?php echo $this->formlabel($form->get('role'));?></td>
+						<td><?php echo $this->formElement($form->get('role')); ?>
+                            <span class="common-error-msg"><?php echo $this->formElementErrors($form->get('role'));?></span></td>
+					</tr>
+                	<tr>
+						<td><?php echo $this->formlabel($form->get('email'));?></td>
+						<td><?php echo $this->formElement($form->get('email')); ?>
+                            <span class="common-error-msg"><?php echo $this->formElementErrors($form->get('email'));?></span></td>
+					</tr>
+					<tr>
+						<td><?php echo $this->formlabel($form->get('password'));?></td>
+						<td><?php echo $this->formElement($form->get('password')); ?>
+                            <span class="common-error-msg"><?php echo $this->formElementErrors($form->get('password'));?></span></td>
+					</tr>
+					<tr>
+						<td>&nbsp;</td>
+						<td>
+                            <?php
+                            echo $this->formRow($form->get('loginCsrf'));
+                            echo $this->formElement($form->get('submit'));
+                            ?>
+                            </td>
+					</tr>
+				</table>
+<?php
+    echo $this->form()->closeTag($form);
+?>
+            </div>
+		</div>
+	</div>
+</div>

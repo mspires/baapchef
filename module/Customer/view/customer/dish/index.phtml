@@ -1,0 +1,144 @@
+<?php
+$title = 'Dishes';
+$this->headTitle($title);
+?>
+
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+	$('#popmenu').click(function(){
+
+		$('#dishmenu').toggle();
+		$("#dishmenu").animate({width: "300px"},function(){
+
+		});
+		
+	});
+
+	$('#dishmenu').click(function(){
+
+		$("#dishmenu").animate({width: "0px"},function(){
+			$('#dishmenu').toggle();
+		});
+		
+	});
+});
+
+
+
+</script>
+
+<style>
+div.fixed {
+    position: relative;
+    top: 0px;
+    left: 0px;
+    width: 0px; 
+    display:none;
+    z-index: 100000; 
+}
+</style>
+
+<?php if($current_restaurant){  ?>
+<div style="position: absolute">
+    <div class="fixed" id="dishmenu">
+        <div class="row">
+        
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Dishes</h3>
+                    </div>
+                    <div class="panel-body">
+                        <ul class="list-group">
+                            <li class="list-group-item"><a href="<?php echo $this->url('mydish',
+                                                                                        array('action'=>'index'), 
+                                                                                        array('query' => array('dishgroup' => 0)));?>">
+                                                            ALL                               
+                                                        </a>
+                            </li>
+                            <?php foreach ($dishgroups as $dishgroup) : ?>    
+                            <li class="list-group-item"><a href="<?php echo $this->url('mydish',
+                                                                                        array('action'=>'index'), 
+                                                                                        array('query' => array('dishgroup' => $dishgroup->id)));?>">
+                                                            <?php echo $this->escapeHtml($dishgroup->name);?>                               
+                                                        </a>
+                            </li>
+                            <?php endforeach; ?>         
+                        </ul>                   
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </div>
+</div>
+<?php } ?>                 
+
+<div class="row">
+
+    <?php if(Count($restaurants)){  ?>
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading clearfix">
+                <h3 class="panel-title pull-left" style="padding-top: 7.5px;"><?php if($current_restaurant){ echo $current_restaurant->name;} ?></h3>
+                <div class="btn-group pull-right">
+                      <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" >Restaurant &nbsp;&nbsp;<span class="caret" ></span></button>
+                        <ul class="dropdown-menu">
+                          <?php foreach ($restaurants as $restaurant) : ?>
+                            <li><a href="<?php echo $this->url('mydish', array('action'=>'index', 'id' => $restaurant->id));?>"><?php echo $this->escapeHtml($restaurant->name);?></a></li>
+                          <?php endforeach; ?>
+                        </ul>
+                      </div>
+                </div>
+            </div>
+        </div>            
+    </div>
+    <?php } ?>
+
+    <?php if($current_restaurant){  ?>
+
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><span class="glyphicon glyphicon-th" id="popmenu"></span>&nbsp;<?php echo $this->translate($title) ?></h3>
+            </div>
+            <div class="panel-body">
+
+
+
+                 <table class="table">
+                 <thead>
+                 <tr>
+                     <th>&nbsp;</th>
+                     <th>Name</th>
+                     <th>Price</th>
+                     <th>Description</th>
+                     <th>Cart</th>
+                 </tr>
+                 </thead>
+                 <tbody>                
+                 <?php foreach ($dishes as $dish) : ?>
+                 <tr>
+                     <td>
+                        <img src="<?php echo $this->escapeHtml($dish->imagepath)?>" />
+                     </td>
+                     <td style="vertical-align: middle;" data-title="Name"><?php echo $this->escapeHtml($dish->name);?></td>
+                     <td style="vertical-align: middle;" data-title="Price">$ <?php echo $this->escapeHtml($dish->price);?></td>
+                     <td style="vertical-align: middle;" data-title="Note"><?php echo $this->escapeHtml($dish->note);?></td>
+                     <td style="vertical-align: middle;" data-title="">
+                         <a class="btn btn-default btn-sm" href="<?php echo $this->url('mycartitem',
+                             array('action'=>'additem', 'id' => $dish->id));?>">Add to Box</a>
+                     </td>
+                 </tr>
+                 <?php endforeach; ?>
+                 </tbody>
+                 </table>
+                 
+            </div>
+        </div>
+    </div>
+
+    <?php } ?>
+</div>   

@@ -1,0 +1,94 @@
+<?php
+
+$title = 'Rewards';
+$this->headTitle($title);
+?>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+
+	$('#popmenu').click(function(){
+
+		$('#rewardmenu').toggle();
+		$("#rewardmenu").animate({left: "0px"},function(){
+
+		});
+		
+	});
+
+	$('#rewardmenu').click(function(){
+
+		$("#rewardmenu").animate({left: "-850px"},function(){
+			$('#rewardmenu').toggle();
+		});
+		
+	});
+});
+
+
+
+</script>
+
+<style>
+div.fixed {
+    position: relative;
+    top: 78px;
+    left: -850px;
+    width: 850px; 
+    display:none;
+    z-index: 100000; 
+}
+</style>
+
+
+
+<div class="row">
+
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading clearfix">
+                <h3 class="panel-title pull-left" style="padding-top: 7.5px;">
+                    <span class="glyphicon glyphicon-th" id="popmenu"></span>&nbsp;<?php echo $this->translate($title) ?>
+                </h3>
+                <div class="btn-group pull-right">
+                    <a class="btn btn-default btn-sm" href="<?php echo $this->url('adminreward', array('action'=>'add'));?>">Add</a>
+                </div>
+            </div>
+            <div class="panel-body">
+            
+                 <table class="table">
+                 <thead>
+                 <tr>
+                     <th style="width: 200px">Dish</th>
+                     <th>Name</th>
+                     <th>Price</th>
+                     <th>Description</th>
+                     <th>&nbsp;</th>
+                 </tr>
+                 </thead>
+                 <tbody>
+                 <?php foreach ($rewards as $reward) : ?>
+                 <tr>
+                     <td>
+                        <img src="<?php echo $this->escapeHtml($reward->imagepath)?>" style="width:200px"/>
+                     </td>
+                     <td  style="vertical-align: middle;" data-title="Dish"><?php echo $this->escapeHtml($reward->name);?></td>
+                     <td style="vertical-align: middle;" data-title="Price">$ <?php echo $this->escapeHtml($reward->price);?></td>
+                     <td style="vertical-align: middle; width: 40%" data-title="Note"><?php echo $this->escapeHtml($reward->note);?></td>
+                     <td style="vertical-align: middle; width: 150px" data-title="">
+                         <a class="btn btn-default btn-sm" href="<?php echo $this->url('adminreward',
+                             array('action'=>'edit', 'id' => $reward->id));?>">Edit</a>
+                         <a class="btn btn-default btn-sm" href="<?php echo $this->url('adminreward',
+                             array('action'=>'delete', 'id' => $reward->id));?>">Delete</a>
+                     </td>
+                 </tr>
+                 <?php endforeach; ?>
+                 </tbody>
+                 </table>
+                 
+            </div>
+        </div>
+    </div>
+</div>      

@@ -1,0 +1,71 @@
+<?php
+
+$title = 'Orders';
+$this->headTitle($title);
+?>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-success">
+            <div class="panel-heading clearfix">
+                <h3 class="panel-title pull-left" style="padding-top: 7.5px;">&nbsp;</h3>
+                <div class="btn-group pull-right">
+                    <a class="btn btn-default btn-sm" href="<?php echo $this->url('restdish',array('action'=>'menu'));?>">Menu</a>
+                    <a class="btn btn-default btn-sm" href="<?php echo $this->url('restorder', array('action'=>'monitor'));?>">Monitor</a>
+                </div>
+            </div>
+        </div>
+    </div>                   
+</div>
+
+<div class="row">
+
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><?php echo $this->translate($title) ?></h3>
+            </div>
+            <div class="panel-body">
+
+                 <table class="table">
+                 <thead>
+                 <tr>
+                     <th>&nbsp;</th>
+                     <th>Name</th>
+                     <th>Order Type</th>
+                     <th>Order Date</th>
+                     <th>Schedule Date</th>
+                     <th>Take Out</th>
+                     <th>Order Status</th>
+                     <th>&nbsp;</th>
+                 </tr>
+                 </thead>
+                 <tbody>
+                 <?php foreach ($orders as $order) : ?>
+                 <tr>
+                     <td>
+                        <img src="<?php echo $this->escapeHtml($order->cimage)?>" style="width:64px"/>
+                     </td>
+                     <td style="vertical-align: middle;" data-title="Name"><?php echo $this->escapeHtml($order->cname);?></td>
+                     <td style="vertical-align: middle;" data-title="Order Type"><?php echo $this->escapeHtml($order->ordertype);?></td>
+                     <td style="vertical-align: middle;" data-title="Order Date"><?php echo $this->escapeHtml($order->orderdate);?></td>
+                     <td style="vertical-align: middle;" data-title="Schedule to Pick"><?php echo $this->escapeHtml($order->scheduledate);?></td>
+                     <td style="vertical-align: middle;" data-title="Pickup"><?php echo $this->escapeHtml($order->takeoutdate);?></td>
+                     <td style="vertical-align: middle;" data-title="Order Status"><?php echo $this->escapeHtml($order->rstate);?></td>
+                     <td style="vertical-align: middle;" data-title="">
+                         <a class="btn btn-default btn-sm" href="<?php echo $this->url('restorderitem',
+                             array('action'=>'index', 'id' => $order->id));?>">View</a>
+                         <a class="btn btn-default btn-sm" href="<?php echo $this->url('restorder',
+                             array('action'=>'edit', 'id' => $order->id));?>">Edit</a>
+                         <a class="btn btn-default btn-sm" href="<?php echo $this->url('restorder',
+                             array('action'=>'delete', 'id' => $order->id));?>">Delete</a>
+                     </td>
+                 </tr>
+                 <?php endforeach; ?>
+                 </tbody>
+                  </table>
+
+            </div>
+        </div>
+    </div>
+</div>                       
